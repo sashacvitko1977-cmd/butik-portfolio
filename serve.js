@@ -49,11 +49,20 @@ function resolveFile(urlPath) {
   return filePath;
 }
 
+function corsHeaders() {
+  return {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization',
+  };
+}
+
 function sendJson(res, status, body) {
   const payload = JSON.stringify(body);
   res.writeHead(status, {
     'Content-Type': 'application/json; charset=utf-8',
     'Cache-Control': 'no-store',
+    ...corsHeaders(),
   });
   res.end(payload);
 }
@@ -97,13 +106,8 @@ function isValidEmail(email) {
 async function handleApi(req, res, pathname) {
   const method = req.method || 'GET';
 
-  // CORS for local tools
   if (method === 'OPTIONS') {
-    res.writeHead(204, {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Methods': 'GET,POST,DELETE,OPTIONS',
-      'Access-Control-Allow-Headers': 'Content-Type, Authorization',
-    });
+    res.writeHead(204, corsHeaders());
     res.end();
     return;
   }
