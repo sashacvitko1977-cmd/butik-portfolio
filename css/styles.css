@@ -2016,3 +2016,18 @@ input[type="search"]:focus {
   font-size: 0.88rem;
 }
 .hidden { display: none !important; }
+
+.reviews-mode-banner {
+  margin: 0 0 1rem;
+  padding: 0.7rem 0.85rem;
+  border-radius: var(--radius-xs);
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  font-size: 0.82rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+  display: flex;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+.reviews-mode-banner i { margin-top: 0.15rem; flex-shrink: 0; }
