@@ -627,15 +627,6 @@ function renderPortfolio() {
       </div>
     </article>
   `).join('');
-
-  requestAnimationFrame(() => {
-    window.PageDrop?.animateIn(grid, 0);
-    setTimeout(() => {
-      grid.querySelectorAll('.portfolio-card').forEach((card) => {
-        card.classList.add('is-visible', 'is-landed');
-      });
-    }, 1500);
-  });
 }
 
 function initPortfolio() {
