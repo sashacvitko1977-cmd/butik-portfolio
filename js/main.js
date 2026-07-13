@@ -521,11 +521,20 @@ function navigateTo(page, articleId = null, updateHash = true) {
     setTimeout(animateCounters, 400);
   }
 
-  requestAnimationFrame(() => {
+  const runPageDrop = () => {
     const activePage = $(`.page[data-page="${page}"]`);
     window.PageDrop?.animate(activePage);
     if (page !== 'home') observeReveals();
-  });
+  };
+
+  // Портфолио рендерится в JS — даём DOM обновиться перед падением карточек
+  if (page === 'portfolio') {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(runPageDrop);
+    });
+  } else {
+    requestAnimationFrame(runPageDrop);
+  }
 }
 
 /* Mobile menu */
@@ -895,8 +904,7 @@ function init() {
   initBlog();
   initContact();
 
-  // Initial page content
-  if (state.page === 'portfolio') renderPortfolio();
+  // Initial page content (portfolio/blog — уже отрисовано в navigateTo)
   if (state.page === 'blog') {
     if (state.articleId) showArticle(state.articleId);
     else showBlogList();

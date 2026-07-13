@@ -1199,12 +1199,12 @@ img.logo__mark {
   opacity: 1;
 }
 .portfolio-card.hidden-filter { display: none; }
-.portfolio-card.is-landed,
-.portfolio-card.is-visible {
-  opacity: 1;
+.portfolio-card.page-drop:not(.is-landed) {
+  opacity: 0;
 }
 .portfolio-card.page-drop.is-landed,
 .portfolio-card.page-drop.is-visible {
+  opacity: 1;
   transform: none;
 }
 .portfolio-card__thumb {
