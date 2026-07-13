@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <script>
+    /* Корректные пути к CSS/JS: сервер, Vercel и file:// */
+    (function () {
+      var href = location.href.split('#')[0].split('?')[0];
+      if (!/\.html?$/i.test(href) && !href.endsWith('/')) href += '/';
+      else if (/\.html?$/i.test(href)) href = href.replace(/[^/]+$/, '');
+      var b = document.createElement('base');
+      b.href = href;
+      var head = document.documentElement.querySelector('head') || document.head;
+      if (head) head.insertBefore(b, head.firstChild);
+    })();
+  </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Собери100 — AI-репетитор для ЕГЭ, ОГЭ и английского</title>
+<meta name="description" content="Персональный AI-репетитор: план подготовки, разбор задач и чат 24/7 для ЕГЭ, ОГЭ и английского языка.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/landing.css">
+</head>
+<body>
+
+<nav class="nav">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <svg class="ring-mini" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="url(#g1)" stroke-width="4"/><defs><linearGradient id="g1" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#4C6FFF"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs></svg>
+      Собери100
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Главная</a></li>
+      <li><a href="dashboard.html">Кабинет</a></li>
+      <li><a href="chat.html">AI-чат</a></li>
+      <li><a href="plan.html">План</a></li>
+      <li><a href="solve.html">Решение задач</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="theme-toggle" aria-label="Переключить тему"></button>
+      <a href="dashboard.html" class="btn btn-primary btn-sm">Начать подготовку</a>
+      <button class="nav-burger" aria-label="Меню" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero"><div class="container hero-inner">
+    <div class="hero-copy reveal">
+      <span class="eyebrow">AI-репетитор нового поколения</span>
+      <h1>Готовься к экзаменам так,<br>чтобы <span class="grad-text">собрать 100</span> баллов.</h1>
+      <p class="hero-lead">Персональный план, чат с ИИ-репетитором и разбор задач по шагам — для ЕГЭ, ОГЭ и английского языка. Без записи к репетитору, без лишнего стресса, в любое время суток.</p>
+      <div class="hero-actions">
+        <a href="dashboard.html" class="btn btn-primary">Начать подготовку →</a>
+        <a href="chat.html" class="btn btn-ghost">Задать вопрос ИИ</a>
+      </div>
+      <div class="hero-trust">
+        <div class="trust-avatars" aria-hidden="true">
+          <span style="background:linear-gradient(135deg,#4c6fff,#8b5cf6)"></span>
+          <span style="background:linear-gradient(135deg,#34d399,#4c6fff)"></span>
+          <span style="background:linear-gradient(135deg,#f5b754,#f3667f)"></span>
+        </div>
+        <p><strong class="mono">12&nbsp;400+</strong> учеников уже занимаются с Собери100</p>
+      </div>
+    </div>
+
+    <div class="hero-visual reveal reveal-delay-2">
+      <div class="hero-ring-card card">
+        <div class="score-ring" style="--size:180px;--thickness:14px;">
+          <div class="score-ring-value"><span class="ring-num" data-target="92"></span><small>из 100 баллов</small></div>
+        </div>
+        <p class="hero-ring-caption">Средний прогноз балла<br>после 6 недель занятий</p>
+      </div>
+      <div class="hero-float-card card hero-float-1">
+        <span class="tag">Математика</span>
+        <p>«Объясни производные простыми словами»</p>
+      </div>
+      <div class="hero-float-card card hero-float-2">
+        <span class="tag">Английский</span>
+        <p>Задача №345 решена за 40 сек</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- LOGOS / STATS BAND -->
+<section class="stats-band section-tight">
+  <div class="container stats-grid">
+    <div class="reveal"><span class="stat-num mono">24/7</span><span class="stat-label">AI-репетитор на связи</span></div>
+    <div class="reveal reveal-delay-1"><span class="stat-num mono">3</span><span class="stat-label">направления: ЕГЭ, ОГЭ, английский</span></div>
+    <div class="reveal reveal-delay-2"><span class="stat-num mono">+18</span><span class="stat-label">баллов в среднем к экзамену</span></div>
+    <div class="reveal reveal-delay-3"><span class="stat-num mono">0 ₽</span><span class="stat-label">на пробный план подготовки</span></div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="section" id="features">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Как это работает</span>
+      <h2>Всё, что нужно для подготовки —<br>в одном личном кабинете</h2>
+    </div>
+
+    <div class="feature-grid">
+      <article class="card feature-card reveal">
+        <div class="feature-icon" style="--c1:#4c6fff;--c2:#8b5cf6">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v12H7l-3 3V4Z"/><path d="M8 9h8M8 12h5"/></svg>
+        </div>
+        <h3>AI-чат с репетитором</h3>
+        <p>Пишите как другу: «объясни производные», «реши задачу №345», «составь план на месяц» — и получайте понятный разбор без сложных терминов.</p>
+        <a href="chat.html" class="feature-link">Открыть чат →</a>
+      </article>
+
+      <article class="card feature-card reveal reveal-delay-1">
+        <div class="feature-icon" style="--c1:#8b5cf6;--c2:#f3667f">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19V5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2Z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg>
+        </div>
+        <h3>Индивидуальный план</h3>
+        <p>Укажите класс, предмет и цель по баллам — получите план подготовки по неделям с расчётом нагрузки под ваше расписание.</p>
+        <a href="plan.html" class="feature-link">Составить план →</a>
+      </article>
+
+      <article class="card feature-card reveal reveal-delay-2">
+        <div class="feature-icon" style="--c1:#34d399;--c2:#4c6fff">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m9 11 3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <h3>Пошаговое решение задач</h3>
+        <p>Вставьте условие задачи — получите разбор по шагам с объяснением каждого действия, а не просто готовый ответ.</p>
+        <a href="solve.html" class="feature-link">Решить задачу →</a>
+      </article>
+
+      <article class="card feature-card reveal reveal-delay-3">
+        <div class="feature-icon" style="--c1:#f5b754;--c2:#f3667f">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></svg>
+        </div>
+        <h3>Прогресс по баллам</h3>
+        <p>Кольцо прогресса в кабинете показывает прогноз балла по каждому предмету и напоминает, чем заняться сегодня.</p>
+        <a href="dashboard.html" class="feature-link">В личный кабинет →</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- SUBJECTS -->
+<section class="section subjects-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Направления</span>
+      <h2>Выберите предмет — начнём прямо сейчас</h2>
+    </div>
+    <div class="subjects-grid">
+      <a href="dashboard.html?subject=math" class="subject-card card reveal">
+        <span class="subject-emoji">📐</span>
+        <h3>Математика ЕГЭ</h3>
+        <p>Профиль и база: от уравнений до стереометрии</p>
+      </a>
+      <a href="dashboard.html?subject=rus" class="subject-card card reveal reveal-delay-1">
+        <span class="subject-emoji">✍️</span>
+        <h3>Русский язык</h3>
+        <p>Сочинение, орфография, задания part 1</p>
+      </a>
+      <a href="dashboard.html?subject=eng" class="subject-card card reveal reveal-delay-2">
+        <span class="subject-emoji">🇬🇧</span>
+        <h3>Английский язык</h3>
+        <p>Грамматика, устная часть, эссе</p>
+      </a>
+      <a href="dashboard.html?subject=oge-math" class="subject-card card reveal reveal-delay-3">
+        <span class="subject-emoji">🧮</span>
+        <h3>Математика ОГЭ</h3>
+        <p>Базовые темы и практические задачи</p>
+      </a>
+      <a href="dashboard.html?subject=phys" class="subject-card card reveal">
+        <span class="subject-emoji">⚛️</span>
+        <h3>Физика</h3>
+        <p>Механика, электричество, задачи part 2</p>
+      </a>
+      <a href="dashboard.html?subject=inf" class="subject-card card reveal reveal-delay-1">
+        <span class="subject-emoji">💻</span>
+        <h3>Информатика</h3>
+        <p>Программирование и логические задачи</p>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- STEPS -->
+<section class="section steps-section">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">Три шага</span>
+      <h2>От регистрации до первого разбора темы — 2 минуты</h2>
+    </div>
+    <div class="steps-grid">
+      <div class="step reveal">
+        <span class="step-num mono">01</span>
+        <h3>Выберите предмет и цель</h3>
+        <p>Укажите класс, предмет и желаемый балл — система поймёт, с чего начать.</p>
+      </div>
+      <div class="step reveal reveal-delay-1">
+        <span class="step-num mono">02</span>
+        <h3>Получите план по неделям</h3>
+        <p>AI распределит темы по неделям с учётом времени, которое у вас есть.</p>
+      </div>
+      <div class="step reveal reveal-delay-2">
+        <span class="step-num mono">03</span>
+        <h3>Занимайтесь в чате каждый день</h3>
+        <p>Задавайте вопросы, разбирайте задачи и отслеживайте прогресс в кольце баллов.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-section">
+  <div class="container">
+    <div class="cta-card card reveal">
+      <div class="cta-ring">
+        <div class="score-ring" style="--size:100px;--thickness:9px;">
+          <div class="score-ring-value"><span class="ring-num" data-target="100"></span><small>баллов</small></div>
+        </div>
+      </div>
+      <div>
+        <h2>Готовы собрать свои 100?</h2>
+        <p>Составьте бесплатный план подготовки за 2 минуты — без регистрации по СМС и скрытых платежей.</p>
+      </div>
+      <a href="dashboard.html" class="btn btn-primary">Начать подготовку →</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <a href="index.html" class="brand">
+      <svg class="ring-mini" viewBox="0 0 32 32" fill="none"><circle cx="16" cy="16" r="13" stroke="url(#g2)" stroke-width="4"/><defs><linearGradient id="g2" x1="0" y1="0" x2="32" y2="32"><stop stop-color="#4C6FFF"/><stop offset="1" stop-color="#8B5CF6"/></linearGradient></defs></svg>
+      Собери100
+    </a>
+    <p class="footer-note">© 2026 Собери100 · AI-репетитор для ЕГЭ, ОГЭ и английского языка</p>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

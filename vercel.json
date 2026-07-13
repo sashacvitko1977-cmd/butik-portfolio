@@ -1,0 +1,18 @@
+{
+  "trailingSlash": true,
+  "cleanUrls": false,
+  "headers": [
+    {
+      "source": "/works/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=0, must-revalidate" }
+      ]
+    }
+  ],
+  "rewrites": [
+    { "source": "/works/elegiya", "destination": "/works/elegiya/index.html" },
+    { "source": "/works/kotodom", "destination": "/works/kotodom/index.html" },
+    { "source": "/works/stroy-master", "destination": "/works/stroy-master/index.html" },
+    { "source": "/works/soberi100", "destination": "/works/soberi100/index.html" }
+  ]
+}

@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="dark" class="theme-mono no-js">
+<head>
+  <meta charset="UTF-8" />
+  <script>document.documentElement.classList.remove('no-js')</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Butik — frontend-разработчик. Лендинги, интерфейсы, вайбкодинг. Telegram @butik_43" />
+  <meta name="author" content="Butik" />
+  <title>Butik | Frontend Developer</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <!-- Prism.js (code highlighting for blog) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- Ambient background glow -->
+  <div class="bg-glow" aria-hidden="true"></div>
+  <canvas class="hero-particles" id="heroParticles" aria-hidden="true"></canvas>
+
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="#home" class="logo" data-nav="home">
+        <img class="logo__mark" src="portfolio.jpg" alt="Butik" width="36" height="36" />
+        <span class="logo__text">Butik<span>_43</span></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <a href="#home" class="nav__link active" data-nav="home">Главная</a>
+        <a href="#about" class="nav__link" data-nav="about">Обо мне</a>
+        <a href="#services" class="nav__link" data-nav="services">Услуги</a>
+        <a href="#portfolio" class="nav__link" data-nav="portfolio">Портфолио</a>
+        <a href="#contact" class="nav__link" data-nav="contact">Контакты</a>
+      </nav>
+
+      <div class="header__actions">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Переключить тему" title="Тема">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+        <a href="#contact" class="btn btn--primary btn--sm" data-nav="contact">
+          Связаться
+        </a>
+        <button type="button" class="burger" id="burgerBtn" aria-label="Меню" aria-expanded="false">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav class="mobile-menu__nav">
+      <a href="#home" data-nav="home">Главная</a>
+      <a href="#about" data-nav="about">Обо мне</a>
+      <a href="#services" data-nav="services">Услуги</a>
+      <a href="#portfolio" data-nav="portfolio">Портфолио</a>
+      <a href="#contact" data-nav="contact">Контакты</a>
+    </nav>
+    <div class="mobile-menu__social">
+      <a href="https://t.me/butik_43" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+    </div>
+  </div>
+
+  <main id="app">
+    <!-- ========== HOME / HERO ========== -->
+    <section class="page page--active" id="page-home" data-page="home">
+      <div class="hero" id="hero">
+        <div class="container hero__grid">
+          <div class="hero__content">
+            <div class="hero__badge hero-drop" style="--drop-i:0">
+              <span class="pulse-dot"></span>
+              Открыт к новым проектам
+            </div>
+            <h1 class="hero__title" id="heroTitle">
+              <span class="hero__line hero-drop" style="--drop-i:1">Создаю цифровые</span>
+              <span class="hero__line hero-drop" style="--drop-i:2">продукты, которые</span>
+              <span class="hero__line hero-drop" style="--drop-i:3"><span class="gradient-text gradient-text--shimmer">запоминаются</span></span>
+            </h1>
+            <p class="hero__lead hero-drop" style="--drop-i:4">
+              Frontend-разработчик · ник <strong>Butik</strong>. Делаю лендинги, интерфейсы
+              и быстрые прототипы — от идеи до запуска.
+            </p>
+            <div class="hero__cta hero-drop" style="--drop-i:5">
+              <a href="#portfolio" class="btn btn--primary btn--lg btn--shine" data-nav="portfolio">
+                Смотреть работы
+                <i class="fa-solid fa-arrow-right"></i>
+              </a>
+              <a href="#contact" class="btn btn--ghost btn--lg" data-nav="contact">
+                Обсудить проект
+              </a>
+            </div>
+            <div class="hero__stack" id="heroStack">
+              <span class="hero-drop" style="--drop-i:6">React</span>
+              <span class="hero-drop" style="--drop-i:7">TypeScript</span>
+              <span class="hero-drop" style="--drop-i:8">Next.js</span>
+              <span class="hero-drop" style="--drop-i:9">Node.js</span>
+              <span class="hero-drop" style="--drop-i:10">Figma</span>
+            </div>
+          </div>
+
+          <div class="hero__visual" id="heroVisual">
+            <div class="hero-card hero-drop hero-drop--card" id="heroCard" style="--drop-i:11">
+              <div class="hero-card__shine" aria-hidden="true"></div>
+              <div class="hero-card__bar">
+                <span></span><span></span><span></span>
+                <em>portfolio.tsx</em>
+              </div>
+              <pre class="hero-card__code"><code id="heroCode"></code><span class="hero-code-cursor" aria-hidden="true"></span></pre>
+              <div class="hero-card__stats">
+                <div>
+                  <strong class="counter" data-target="1" data-suffix="">0</strong>
+                  <span>год опыта</span>
+                </div>
+                <div>
+                  <strong class="counter" data-target="10" data-suffix="+">0</strong>
+                  <span>проектов</span>
+                </div>
+                <div>
+                  <strong class="counter" data-target="10" data-suffix="+">0</strong>
+                  <span>задач</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="hero__scroll" aria-hidden="true">
+          <span>scroll</span>
+          <div class="hero__scroll-line"></div>
+        </div>
+      </div>
+
+      <!-- Social proof strip -->
+      <div class="marquee-wrap hero-drop" style="--drop-i:12">
+        <div class="container">
+          <p class="marquee-label">Работал с</p>
+        </div>
+        <div class="marquee">
+          <div class="marquee__track">
+            <span>Yandex</span><span>Sber</span><span>Tinkoff</span><span>Avito</span>
+            <span>VK</span><span>Ozon</span><span>Kaspersky</span><span>Mail.ru</span>
+            <span>Yandex</span><span>Sber</span><span>Tinkoff</span><span>Avito</span>
+            <span>VK</span><span>Ozon</span><span>Kaspersky</span><span>Mail.ru</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ABOUT ========== -->
+    <section class="page" id="page-about" data-page="about">
+      <div class="page-hero">
+        <div class="container">
+          <span class="eyebrow">Обо мне</span>
+          <h1 class="page-hero__title">Инженер, который думает<br />как дизайнер</h1>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container about-layout">
+          <div class="about-photo reveal">
+            <div class="about-photo__frame">
+              <img class="about-photo__img" src="portfolio.jpg" alt="Butik — frontend developer" width="480" height="480" />
+            </div>
+          </div>
+
+          <div class="about-body reveal" data-delay="80">
+            <p class="lead">
+              Привет! Я <strong>Butik</strong> — frontend-разработчик. Делаю сайты, лендинги
+              и интерфейсы, которые выглядят современно и работают быстро.
+            </p>
+            <p>
+              В работе год: вёрстка, интерактив, прототипы и «вайбкодинг» — быстрый сбор MVP
+              и лендингов с AI-инструментами и чистым кодом под капотом.
+            </p>
+            <p>
+              Люблю внимание к деталям, понятную структуру и результат, который можно
+              сразу показать клиенту.
+            </p>
+
+            <div class="about-meta">
+              <div>
+                <span class="about-meta__label">Опыт</span>
+                <strong>1 год</strong>
+              </div>
+              <div>
+                <span class="about-meta__label">Ник</span>
+                <strong>Butik</strong>
+              </div>
+              <div>
+                <span class="about-meta__label">Фокус</span>
+                <strong>Frontend · Landings</strong>
+              </div>
+            </div>
+
+            <div class="about-actions">
+              <a href="https://t.me/butik_43" class="btn btn--primary" target="_blank" rel="noopener">
+                <i class="fa-brands fa-telegram"></i> Написать в Telegram
+              </a>
+              <button type="button" class="btn btn--ghost" data-copy="https://t.me/butik_43">
+                <i class="fa-regular fa-copy"></i> Скопировать @butik_43
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="section section--tight">
+        <div class="container">
+          <div class="skills-grid reveal">
+            <article class="skill-card">
+              <h3><i class="fa-solid fa-code"></i> Frontend</h3>
+              <ul>
+                <li>React / Next.js / Vue</li>
+                <li>TypeScript · JavaScript</li>
+                <li>CSS · Tailwind · SCSS</li>
+                <li>Redux · Zustand · React Query</li>
+              </ul>
+            </article>
+            <article class="skill-card">
+              <h3><i class="fa-solid fa-server"></i> Backend & Tools</h3>
+              <ul>
+                <li>Node.js · Express · Nest</li>
+                <li>REST · GraphQL</li>
+                <li>Git · CI/CD · Docker</li>
+                <li>Jest · Playwright · Vitest</li>
+              </ul>
+            </article>
+            <article class="skill-card">
+              <h3><i class="fa-solid fa-palette"></i> Design & Soft</h3>
+              <ul>
+                <li>Figma · Design Systems</li>
+                <li>UX Writing · A11y</li>
+                <li>Mentoring · Code Review</li>
+                <li>Product Thinking</li>
+              </ul>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- Timeline -->
+      <div class="section">
+        <div class="container">
+          <div class="section-head reveal">
+            <span class="eyebrow">Опыт</span>
+            <h2>Карьерный путь</h2>
+          </div>
+          <div class="timeline">
+            <div class="timeline__item reveal">
+              <div class="timeline__dot"></div>
+              <div class="timeline__content">
+                <span class="timeline__date">2025 — н.в.</span>
+                <h3>Frontend Developer · Butik</h3>
+                <p>Лендинги, сайты-визитки, интерфейсы и быстрые прототипы. Вайбкодинг + ручная доводка качества.</p>
+              </div>
+            </div>
+            <div class="timeline__item reveal" data-delay="60">
+              <div class="timeline__dot"></div>
+              <div class="timeline__content">
+                <span class="timeline__date">Практика</span>
+                <h3>Вёрстка и pet-проекты</h3>
+                <p>HTML/CSS/JS, адаптив, анимации, сборка лендингов и UI-блоков для портфолио.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== SERVICES ========== -->
+    <section class="page" id="page-services" data-page="services">
+      <div class="page-hero">
+        <div class="container">
+          <span class="eyebrow">Услуги</span>
+          <h1 class="page-hero__title">Что я могу сделать<br />для вашего продукта</h1>
+          <p class="page-hero__desc">От discovery до production — полный цикл frontend-разработки</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="services-grid">
+            <article class="service-card reveal">
+              <div class="service-card__icon"><i class="fa-solid fa-laptop-code"></i></div>
+              <h3>Разработка интерфейсов</h3>
+              <p>SPA, дашборды и интерактивные страницы на современном стеке с чистой архитектурой.</p>
+              <ul class="service-card__list">
+                <li>Component-driven UI</li>
+                <li>Адаптив и ан��мации</li>
+                <li>Чистый, поддерживаемый код</li>
+              </ul>
+            </article>
+            <article class="service-card reveal" data-delay="80">
+              <div class="service-card__icon"><i class="fa-solid fa-window-maximize"></i></div>
+              <h3>Создание лендингов</h3>
+              <p>Продающие одностраничники под продукт, услугу или запуск: структура, дизайн, вёрстка, формы.</p>
+              <ul class="service-card__list">
+                <li>Конверсионная структура</li>
+                <li>Быстрая загрузка</li>
+                <li>Адаптив mobile-first</li>
+              </ul>
+            </article>
+            <article class="service-card reveal" data-delay="160">
+              <div class="service-card__icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+              <h3>Вайбкодинг</h3>
+              <p>Быстрый сбор MVP, прототипов и сайтов с AI: от идеи до рабочего результата за дни, не недели.</p>
+              <ul class="service-card__list">
+                <li>Скорость запуска</li>
+                <li>AI + ручная доводка</li>
+                <li>Итерации «на лету»</li>
+              </ul>
+            </article>
+            <article class="service-card reveal" data-delay="240">
+              <div class="service-card__icon"><i class="fa-solid fa-gauge-high"></i></div>
+              <h3>Performance & SEO</h3>
+              <p>Ускорение сайта, базовая SEO-разметка, аккуратная вёрстка и доступность.</p>
+              <ul class="service-card__list">
+                <li>Скорость и Core Web Vitals</li>
+                <li>Семантика HTML</li>
+                <li>Мета-теги и разметка</li>
+              </ul>
+            </article>
+            <article class="service-card reveal" data-delay="300">
+              <div class="service-card__icon"><i class="fa-solid fa-layer-group"></i></div>
+              <h3>UI / Design Systems</h3>
+              <p>Единый стиль компонентов, токены, переиспользуемые блоки для роста продукта.</p>
+              <ul class="service-card__list">
+                <li>Design tokens</li>
+                <li>Компоненты</li>
+                <li>Единый UI</li>
+              </ul>
+            </article>
+            <article class="service-card reveal" data-delay="360">
+              <div class="service-card__icon"><i class="fa-solid fa-lightbulb"></i></div>
+              <h3>Доработки и поддержка</h3>
+              <p>Правки, новые секции, рефакторинг, помощь с запуском и мелкими фичами.</p>
+              <ul class="service-card__list">
+                <li>Быстрые фиксы</li>
+                <li>Новые блоки</li>
+                <li>Сопровождение</li>
+              </ul>
+            </article>
+          </div>
+
+          <div class="pricing-note reveal">
+            <div>
+              <h3>Как работаем</h3>
+              <p>Фикс за этап или time & material. Минимум бюрократии — максимум результата.</p>
+            </div>
+            <a href="#contact" class="btn btn--primary" data-nav="contact">
+              Получить оценку <i class="fa-solid fa-arrow-right"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== PORTFOLIO ========== -->
+    <section class="page" id="page-portfolio" data-page="portfolio">
+      <div class="page-hero">
+        <div class="container">
+          <span class="eyebrow">Портфолио</span>
+          <h1 class="page-hero__title">Примеры работ</h1>
+          <p class="page-hero__desc">Реальные проекты: можно открыть и посмотреть в деле</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="portfolio-grid" id="portfolioGrid">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ========== BLOG ========== -->
+    <section class="page" id="page-blog" data-page="blog">
+      <div class="page-hero">
+        <div class="container">
+          <span class="eyebrow">Блог</span>
+          <h1 class="page-hero__title">Заметки о коде,<br />дизайне и карьере</h1>
+          <p class="page-hero__desc">Практические статьи без воды — из реального опыта</p>
+        </div>
+      </div>
+
+      <!-- Blog list view -->
+      <div class="section" id="blogListView">
+        <div class="container">
+          <div class="blog-toolbar reveal">
+            <div class="search-box">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <input type="search" id="blogSearch" placeholder="Поиск по статьям..." autocomplete="off" />
+            </div>
+            <div class="blog-cats" id="blogCategories" role="group" aria-label="Категории">
+              <!-- Filled by JS -->
+            </div>
+          </div>
+
+          <div class="blog-grid" id="blogGrid">
+            <!-- Filled by JS -->
+          </div>
+
+          <p class="blog-empty hidden" id="blogEmpty">
+            <i class="fa-regular fa-folder-open"></i>
+            Ничего не найдено. Попробуйте другой запрос.
+          </p>
+        </div>
+      </div>
+
+      <!-- Article view -->
+      <div class="section hidden" id="blogArticleView">
+        <div class="container article-wrap">
+          <button type="button" class="btn btn--ghost btn--sm article-back" id="articleBack">
+            <i class="fa-solid fa-arrow-left"></i> Все статьи
+          </button>
+          <article class="article" id="articleContent">
+            <!-- Filled by JS -->
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CONTACT ========== -->
+    <section class="page" id="page-contact" data-page="contact">
+      <div class="page-hero">
+        <div class="container">
+          <span class="eyebrow">Контакты</span>
+          <h1 class="page-hero__title">Давайте сделаем<br />что-то крутое</h1>
+          <p class="page-hero__desc">Отвечаю в течение 24 часов в рабочие дни</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container contact-telegram">
+          <div class="contact-telegram__card reveal">
+            <div class="contact-telegram__icon">
+              <i class="fa-brands fa-telegram"></i>
+            </div>
+            <h3>Напишите в Telegram</h3>
+            <p>Единственный и самый быстрый способ связаться — личные сообщения</p>
+            <a href="https://t.me/butik_43" class="btn btn--primary btn--lg" target="_blank" rel="noopener">
+              <i class="fa-brands fa-telegram"></i> Открыть @butik_43
+            </a>
+            <button type="button" class="btn btn--ghost" data-copy="https://t.me/butik_43">
+              <i class="fa-regular fa-copy"></i> Скопировать ссылку
+            </button>
+            <p class="contact-note">
+              <i class="fa-solid fa-clock"></i>
+              Обычно отвечаю в течение дня · МСК / UTC+3
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <img class="logo__mark" src="portfolio.jpg" alt="Butik" width="36" height="36" />
+        <div>
+          <strong>Butik</strong>
+          <p>Frontend Developer · @butik_43</p>
+        </div>
+      </div>
+      <p class="footer__copy">© 2026 · Сделано с вниманием к деталям</p>
+      <div class="footer__social">
+        <a href="https://t.me/butik_43" target="_blank" rel="noopener" aria-label="Telegram"><i class="fa-brands fa-telegram"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Portfolio modal -->
+  <div class="modal" id="portfolioModal" role="dialog" aria-modal="true" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog modal__dialog--wide">
+      <button type="button" class="modal__close" data-close-modal aria-label="Закрыть">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="portfolioModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <!-- Prism -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-typescript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-css.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-jsx.min.js"></script>
+
+  <script src="js/page-drop.js"></script>
+  <script src="js/hero-animations.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

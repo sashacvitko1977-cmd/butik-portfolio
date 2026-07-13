@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <script>
+    /* Корректные пути к CSS/JS: сервер, Vercel и file:// */
+    (function () {
+      var href = location.href.split('#')[0].split('?')[0];
+      if (!/\.html?$/i.test(href) && !href.endsWith('/')) href += '/';
+      else if (/\.html?$/i.test(href)) href = href.replace(/[^/]+$/, '');
+      var b = document.createElement('base');
+      b.href = href;
+      var head = document.documentElement.querySelector('head') || document.head;
+      if (head) head.insertBefore(b, head.firstChild);
+    })();
+  </script>
+<meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="СтройМастер — строительная компания. Ремонт, строительство и проектирование под ключ." />
+  <title>СтройМастер — Строительная компания</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <!-- Font Awesome icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <!-- ========== HEADER ========== -->
+  <header class="header" id="header"><div class="container header__inner">
+      <a href="#home" class="logo" data-page="home">
+        <span class="logo__icon"><i class="fa-solid fa-helmet-safety"></i></span>
+        <span class="logo__text">Строй<span>Мастер</span></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Основная навигация">
+        <a href="#home" class="nav__link active" data-page="home">Главная</a>
+        <a href="#about" class="nav__link" data-page="about">О компании</a>
+        <a href="#services" class="nav__link" data-page="services">Услуги</a>
+        <a href="#portfolio" class="nav__link" data-page="portfolio">Портфолио</a>
+        <a href="#contacts" class="nav__link" data-page="contacts">Контакты</a>
+      </nav>
+
+      <div class="header__actions">
+        <button type="button" class="btn-icon" id="themeToggle" aria-label="Переключить тему" title="Тема">
+          <i class="fa-solid fa-moon" id="themeIcon"></i>
+        </button>
+        <button type="button" class="btn btn--outline btn--sm" id="loginBtn">
+          <i class="fa-solid fa-right-to-bracket"></i>
+          <span>Войти</span>
+        </button>
+        <button type="button" class="btn btn--primary btn--sm hidden" id="dashboardBtn" data-page="dashboard">
+          <i class="fa-solid fa-gauge-high"></i>
+          <span>Кабинет</span>
+        </button>
+        <button type="button" class="btn-icon burger" id="burgerBtn" aria-label="Меню" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+    <nav class="mobile-menu__nav">
+      <a href="#home" class="mobile-menu__link" data-page="home">Главная</a>
+      <a href="#about" class="mobile-menu__link" data-page="about">О компании</a>
+      <a href="#services" class="mobile-menu__link" data-page="services">Услуги</a>
+      <a href="#portfolio" class="mobile-menu__link" data-page="portfolio">Портфолио</a>
+      <a href="#contacts" class="mobile-menu__link" data-page="contacts">Контакты</a>
+    </nav>
+  </div>
+
+  <!-- ========== MAIN CONTENT ========== -->
+  <main id="app">
+
+    <!-- ===== HOME ===== -->
+    <section class="page page--active" id="page-home" data-page-view="home">
+      <!-- Hero -->
+      <div class="hero">
+        <div class="hero__bg"></div>
+        <div class="container hero__content">
+          <div class="hero__badge">
+            <i class="fa-solid fa-award"></i> 15 лет на рынке строительства
+          </div>
+          <h1 class="hero__title">
+            Строим надёжно.<br />
+            <span class="text-accent">Сдаём в срок.</span>
+          </h1>
+          <p class="hero__subtitle">
+            Полный цикл строительных работ: от проектирования до сдачи объекта.
+            Квартиры, офисы, коммерческие помещения и частные дома.
+          </p>
+          <div class="hero__cta">
+            <button type="button" class="btn btn--primary btn--lg" data-page="contacts">
+              <i class="fa-solid fa-paper-plane"></i> Оставить заявку
+            </button>
+            <button type="button" class="btn btn--ghost btn--lg" data-page="portfolio">
+              <i class="fa-solid fa-images"></i> Смотреть проекты
+            </button>
+          </div>
+          <div class="hero__stats">
+            <div class="hero__stat">
+              <strong>350+</strong>
+              <span>объектов</span>
+            </div>
+            <div class="hero__stat">
+              <strong>98%</strong>
+              <span>в срок</span>
+            </div>
+            <div class="hero__stat">
+              <strong>120+</strong>
+              <span>сотрудников</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Advantages -->
+      <div class="section">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__label">Почему мы</span>
+            <h2 class="section__title">Преимущества работы с нами</h2>
+            <p class="section__desc">Прозрачные процессы, фиксированные сроки и гарантия на все виды работ</p>
+          </div>
+          <div class="grid grid--4">
+            <article class="card feature-card">
+              <div class="feature-card__icon"><i class="fa-solid fa-file-contract"></i></div>
+              <h3>Договор и смета</h3>
+              <p>Фиксируем стоимость и сроки в договоре. Без скрытых доплат.</p>
+            </article>
+            <article class="card feature-card">
+              <div class="feature-card__icon"><i class="fa-solid fa-people-group"></i></div>
+              <h3>Свои бригады</h3>
+              <p>Штатные специалисты, контроль качества на каждом этапе.</p>
+            </article>
+            <article class="card feature-card">
+              <div class="feature-card__icon"><i class="fa-solid fa-shield-halved"></i></div>
+              <h3>Гарантия 3 года</h3>
+              <p>Письменная гарантия на работы и материалы по договору.</p>
+            </article>
+            <article class="card feature-card">
+              <div class="feature-card__icon"><i class="fa-solid fa-comments"></i></div>
+              <h3>Личный менеджер</h3>
+              <p>Один контакт на весь проект. Отчёты и фото с объекта.</p>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- Services preview -->
+      <div class="section section--alt">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__label">Услуги</span>
+            <h2 class="section__title">Что мы делаем</h2>
+          </div>
+          <div class="grid grid--3">
+            <article class="card service-card">
+              <div class="service-card__img" style="--svc-hue: 210">
+                <i class="fa-solid fa-building"></i>
+              </div>
+              <div class="service-card__body">
+                <h3>Капитальный ремонт</h3>
+                <p>Полная перепланировка и отделка квартир и офисов под ключ.</p>
+                <button type="button" class="link" data-page="services">Подробнее <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </article>
+            <article class="card service-card">
+              <div class="service-card__img" style="--svc-hue: 25">
+                <i class="fa-solid fa-house"></i>
+              </div>
+              <div class="service-card__body">
+                <h3>Частное строительство</h3>
+                <p>Коттеджи, таунхаусы и дачи — от фундамента до кровли.</p>
+                <button type="button" class="link" data-page="services">Подробнее <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </article>
+            <article class="card service-card">
+              <div class="service-card__img" style="--svc-hue: 160">
+                <i class="fa-solid fa-compass-drafting"></i>
+              </div>
+              <div class="service-card__body">
+                <h3>Проектирование</h3>
+                <p>Архитектурные и инженерные проекты с согласованием.</p>
+                <button type="button" class="link" data-page="services">Подробнее <i class="fa-solid fa-arrow-right"></i></button>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- Testimonials -->
+      <div class="section">
+        <div class="container">
+          <div class="section__header">
+            <span class="section__label">Отзывы</span>
+            <h2 class="section__title">Что говорят клиенты</h2>
+          </div>
+          <div class="grid grid--3">
+            <article class="card testimonial">
+              <div class="testimonial__stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p>«Сдали квартиру на 2 недели раньше срока. Качество отделки отличное, менеджер всегда на связи.»</p>
+              <div class="testimonial__author">
+                <div class="avatar">АК</div>
+                <div>
+                  <strong>Анна Ковалёва</strong>
+                  <span>Ремонт 3-к квартиры</span>
+                </div>
+              </div>
+            </article>
+            <article class="card testimonial">
+              <div class="testimonial__stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+              </div>
+              <p>«Строили офис 400 м². Прозрачная смета, еженедельные отчёты. Рекомендую как подрядчика.»</p>
+              <div class="testimonial__author">
+                <div class="avatar">ДМ</div>
+                <div>
+                  <strong>Дмитрий Морозов</strong>
+                  <span>ООО «ТехноПлюс»</span>
+                </div>
+              </div>
+            </article>
+            <article class="card testimonial">
+              <div class="testimonial__stars">
+                <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star-half-stroke"></i>
+              </div>
+              <p>«Дом под ключ за 8 месяцев. Были мелкие правки, но всё быстро закрыли. Гарантию соблюдают.»</p>
+              <div class="testimonial__author">
+                <div class="avatar">ЕС</div>
+                <div>
+                  <strong>Елена Соколова</strong>
+                  <span>Коттедж 180 м²</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- CTA band -->
+      <div class="cta-band">
+        <div class="container cta-band__inner">
+          <div>
+            <h2>Готовы обсудить ваш проект?</h2>
+            <p>Бесплатный выезд инженера и предварительная смета за 1 день</p>
+          </div>
+          <button type="button" class="btn btn--primary btn--lg" data-page="contacts">
+            Получить консультацию
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ABOUT ===== -->
+    <section class="page" id="page-about" data-page-view="about">
+      <div class="page-hero">
+        <div class="container">
+          <span class="section__label">О компании</span>
+          <h1 class="page-hero__title">СтройМастер с 2011 года</h1>
+          <p class="page-hero__desc">Строительная компания полного цикла для частных и корпоративных клиентов</p>
+        </div>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="about-grid">
+            <div class="about-grid__text">
+              <h2>Наша миссия</h2>
+              <p>
+                Мы создаём пространства, в которых комфортно жить и работать.
+                Наш подход — честные сроки, понятная смета и контроль качества на каждом этапе.
+              </p>
+              <p>
+                В штате — инженеры, прорабы, отделочники и снабженцы. Работаем по ГОСТ и СНиП,
+                используем проверенных поставщиков материалов.
+              </p>
+              <ul class="checklist">
+                <li><i class="fa-solid fa-check"></i> СРО, допуски и страхование ответственности</li>
+                <li><i class="fa-solid fa-check"></i> Собственный парк техники и склад материалов</li>
+                <li><i class="fa-solid fa-check"></i> Цифровой личный кабинет для клиентов</li>
+                <li><i class="fa-solid fa-check"></i> Работаем в Москве, МО и регионах ЦФО</li>
+              </ul>
+            </div>
+            <div class="about-grid__stats">
+              <div class="stat-box">
+                <strong>15</strong>
+                <span>лет опыта</span>
+              </div>
+              <div class="stat-box">
+                <strong>350+</strong>
+                <span>реализованных объектов</span>
+              </div>
+              <div class="stat-box">
+                <strong>120</strong>
+                <span>специалистов в штате</span>
+              </div>
+              <div class="stat-box">
+                <strong>4.9</strong>
+                <span>средняя оценка клиентов</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="section section--alt">
+        <div class="container">
+          <div class="section__header">
+            <h2 class="section__title">Этапы работы</h2>
+          </div>
+          <div class="timeline">
+            <div class="timeline__item">
+              <div class="timeline__num">01</div>
+              <h3>Заявка и замер</h3>
+              <p>Выезд инженера, обмеры, обсуждение задач и бюджета</p>
+            </div>
+            <div class="timeline__item">
+              <div class="timeline__num">02</div>
+              <h3>Смета и договор</h3>
+              <p>Детальная смета, график работ, фиксация условий</p>
+            </div>
+            <div class="timeline__item">
+              <div class="timeline__num">03</div>
+              <h3>Производство</h3>
+              <p>Строительство и отделка с еженедельными отчётами</p>
+            </div>
+            <div class="timeline__item">
+              <div class="timeline__num">04</div>
+              <h3>Сдача и гарантия</h3>
+              <p>Приёмка, устранение замечаний, 3 года гарантии</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== SERVICES ===== -->
+    <section class="page" id="page-services" data-page-view="services">
+      <div class="page-hero">
+        <div class="container">
+          <span class="section__label">Услуги</span>
+          <h1 class="page-hero__title">Полный спектр строительных услуг</h1>
+          <p class="page-hero__desc">От дизайн-проекта до сдачи объекта под ключ</p>
+        </div>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="grid grid--2" id="servicesList">
+            <article class="card service-detail">
+              <div class="service-detail__icon"><i class="fa-solid fa-paint-roller"></i></div>
+              <div>
+                <h3>Косметический и капитальный ремонт</h3>
+                <p>Квартиры, дома, офисы. Демонтаж, черновые и чистовые работы, электрика, сантехника.</p>
+                <ul>
+                  <li>От 8 000 ₽/м²</li>
+                  <li>Срок от 30 дней</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card service-detail">
+              <div class="service-detail__icon"><i class="fa-solid fa-house-chimney"></i></div>
+              <div>
+                <h3>Строительство частных домов</h3>
+                <p>Каркас, газобетон, кирпич. Фундамент, коробка, кровля, инженерия, отделка.</p>
+                <ul>
+                  <li>От 45 000 ₽/м²</li>
+                  <li>Срок от 4 месяцев</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card service-detail">
+              <div class="service-detail__icon"><i class="fa-solid fa-city"></i></div>
+              <div>
+                <h3>Коммерческие объекты</h3>
+                <p>Офисы, магазины, склады, рестораны. Fit-out и реконструкция.</p>
+                <ul>
+                  <li>Индивидуальный расчёт</li>
+                  <li>Работа по сменам 24/7</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card service-detail">
+              <div class="service-detail__icon"><i class="fa-solid fa-ruler-combined"></i></div>
+              <div>
+                <h3>Проектирование и дизайн</h3>
+                <p>АР, КР, инженерные разделы, 3D-визуализация, комплектация.</p>
+                <ul>
+                  <li>От 1 500 ₽/м²</li>
+                  <li>Согласование включено</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card service-detail">
+              <div class="service-detail__icon"><i class="fa-solid fa-bolt"></i></div>
+              <div>
+                <h3>Инженерные системы</h3>
+                <p>Электрика, отопление, вентиляция, кондиционирование, умный дом.</p>
+                <ul>
+                  <li>Проект + монтаж</li>
+                  <li>Гарантия на оборудование</li>
+                </ul>
+              </div>
+            </article>
+            <article class="card service-detail">
+              <div class="service-detail__icon"><i class="fa-solid fa-clipboard-check"></i></div>
+              <div>
+                <h3>Технический надзор</h3>
+                <p>Контроль чужих подрядчиков, приёмка этапов, экспертиза смет.</p>
+                <ul>
+                  <li>От 25 000 ₽/мес</li>
+                  <li>Фото- и видеоотчёты</li>
+                </ul>
+              </div>
+            </article>
+          </div>
+          <div class="section__cta">
+            <button type="button" class="btn btn--primary" data-page="contacts">
+              <i class="fa-solid fa-calculator"></i> Рассчитать стоимость
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== PORTFOLIO ===== -->
+    <section class="page" id="page-portfolio" data-page-view="portfolio">
+      <div class="page-hero">
+        <div class="container">
+          <span class="section__label">Портфолио</span>
+          <h1 class="page-hero__title">Реализованные проекты</h1>
+          <p class="page-hero__desc">Отбор работ за последние годы</p>
+        </div>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="filters" id="portfolioFilters" role="group" aria-label="Фильтр портфолио">
+            <button type="button" class="filter-btn active" data-filter="all">Все</button>
+            <button type="button" class="filter-btn" data-filter="repair">Ремонт</button>
+            <button type="button" class="filter-btn" data-filter="house">Дома</button>
+            <button type="button" class="filter-btn" data-filter="commercial">Коммерция</button>
+            <button type="button" class="filter-btn" data-filter="design">Дизайн</button>
+          </div>
+          <div class="grid grid--3" id="portfolioGrid">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CONTACTS ===== -->
+    <section class="page" id="page-contacts" data-page-view="contacts">
+      <div class="page-hero">
+        <div class="container">
+          <span class="section__label">Контакты</span>
+          <h1 class="page-hero__title">Свяжитесь с нами</h1>
+          <p class="page-hero__desc">Ответим в течение рабочего дня и согласуем удобное время</p>
+        </div>
+      </div>
+      <div class="section">
+        <div class="container">
+          <div class="contacts-grid">
+            <div class="contacts-info">
+              <div class="contact-item">
+                <div class="contact-item__icon"><i class="fa-solid fa-phone"></i></div>
+                <div>
+                  <h3>Телефон</h3>
+                  <a href="tel:+74951234567">+7 (495) 123-45-67</a>
+                  <p>Пн–Пт 9:00–19:00, Сб 10:00–16:00</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-item__icon"><i class="fa-solid fa-envelope"></i></div>
+                <div>
+                  <h3>Email</h3>
+                  <a href="mailto:info@stroymaster.ru">info@stroymaster.ru</a>
+                  <p>Заявки и коммерческие предложения</p>
+                </div>
+              </div>
+              <div class="contact-item">
+                <div class="contact-item__icon"><i class="fa-solid fa-location-dot"></i></div>
+                <div>
+                  <h3>Офис</h3>
+                  <p>г. Москва, ул. Строителей, д. 12, оф. 401</p>
+                  <p>м. Университет, 7 мин пешком</p>
+                </div>
+              </div>
+              <div class="map-placeholder">
+                <i class="fa-solid fa-map-location-dot"></i>
+                <span>Карта: ул. Строителей, 12</span>
+              </div>
+            </div>
+
+            <form class="card form" id="contactForm" novalidate>
+              <h2>Форма обратной связи</h2>
+              <p class="form__hint">Заполните поля — мы перезвоним и уточним детали</p>
+
+              <div class="form__group">
+                <label for="cf-name">Имя <span class="req">*</span></label>
+                <input type="text" id="cf-name" name="name" placeholder="Как к вам обращаться" required autocomplete="name" />
+                <span class="form__error" data-error="name"></span>
+              </div>
+
+              <div class="form__row">
+                <div class="form__group">
+                  <label for="cf-phone">Телефон <span class="req">*</span></label>
+                  <input type="tel" id="cf-phone" name="phone" placeholder="+7 (___) ___-__-__" required autocomplete="tel" />
+                  <span class="form__error" data-error="phone"></span>
+                </div>
+                <div class="form__group">
+                  <label for="cf-email">Email</label>
+                  <input type="email" id="cf-email" name="email" placeholder="mail@example.com" autocomplete="email" />
+                  <span class="form__error" data-error="email"></span>
+                </div>
+              </div>
+
+              <div class="form__group">
+                <label for="cf-service">Интересующая услуга</label>
+                <select id="cf-service" name="service">
+                  <option value="">Выберите услугу</option>
+                  <option value="repair">Ремонт</option>
+                  <option value="house">Строительство дома</option>
+                  <option value="commercial">Коммерческий объект</option>
+                  <option value="design">Проектирование</option>
+                  <option value="other">Другое</option>
+                </select>
+              </div>
+
+              <div class="form__group">
+                <label for="cf-message">Сообщение <span class="req">*</span></label>
+                <textarea id="cf-message" name="message" rows="4" placeholder="Кратко опишите задачу" required></textarea>
+                <span class="form__error" data-error="message"></span>
+              </div>
+
+              <div class="form__group form__group--check">
+                <label>
+                  <input type="checkbox" id="cf-agree" name="agree" required />
+                  <span>Согласен на обработку персональных данных</span>
+                </label>
+                <span class="form__error" data-error="agree"></span>
+              </div>
+
+              <button type="submit" class="btn btn--primary btn--block">
+                <i class="fa-solid fa-paper-plane"></i> Отправить заявку
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== DASHBOARD ===== -->
+    <section class="page page--dashboard" id="page-dashboard" data-page-view="dashboard">
+      <div class="dash">
+        <!-- Sidebar -->
+        <aside class="dash__sidebar" id="dashSidebar">
+          <div class="dash__brand">
+            <i class="fa-solid fa-gauge-high"></i>
+            <span>CRM СтройМастер</span>
+          </div>
+
+          <div class="dash__user" id="dashUserInfo">
+            <!-- Filled by JS -->
+          </div>
+
+          <div class="role-switch" id="roleSwitch">
+            <button type="button" class="role-switch__btn" data-role="client">
+              <i class="fa-solid fa-user"></i> Клиент
+            </button>
+            <button type="button" class="role-switch__btn" data-role="manager">
+              <i class="fa-solid fa-briefcase"></i> Менеджер
+            </button>
+          </div>
+
+          <nav class="dash__nav" id="dashNav">
+            <!-- Filled by JS depending on role -->
+          </nav>
+
+          <button type="button" class="btn btn--ghost btn--sm dash__logout" id="logoutBtn">
+            <i class="fa-solid fa-right-from-bracket"></i> Выйти
+          </button>
+        </aside>
+
+        <!-- Main dashboard area -->
+        <div class="dash__main">
+          <div class="dash__topbar">
+            <button type="button" class="btn-icon dash__menu-toggle" id="dashMenuToggle" aria-label="Меню кабинета">
+              <i class="fa-solid fa-bars"></i>
+            </button>
+            <h1 class="dash__title" id="dashTitle">Панель управления</h1>
+            <div class="dash__topbar-actions">
+              <span class="badge badge--info" id="dashRoleBadge">Клиент</span>
+            </div>
+          </div>
+
+          <div class="dash__content" id="dashContent">
+            <!-- Dynamic CRM views rendered by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== FOOTER (hidden on dashboard) ========== -->
+  <footer class="footer" id="footer">
+    <div class="container footer__grid">
+      <div class="footer__brand">
+        <a href="#home" class="logo" data-page="home">
+          <span class="logo__icon"><i class="fa-solid fa-helmet-safety"></i></span>
+          <span class="logo__text">Строй<span>Мастер</span></span>
+        </a>
+        <p>Строительная компания полного цикла. Работаем с 2011 года.</p>
+      </div>
+      <div>
+        <h4>Навигация</h4>
+        <ul class="footer__links">
+          <li><a href="#about" data-page="about">О компании</a></li>
+          <li><a href="#services" data-page="services">Услуги</a></li>
+          <li><a href="#portfolio" data-page="portfolio">Портфолио</a></li>
+          <li><a href="#contacts" data-page="contacts">Контакты</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Контакты</h4>
+        <ul class="footer__links">
+          <li><a href="tel:+74951234567">+7 (495) 123-45-67</a></li>
+          <li><a href="mailto:info@stroymaster.ru">info@stroymaster.ru</a></li>
+          <li>г. Москва, ул. Строителей, 12</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Режим работы</h4>
+        <p>Пн–Пт: 9:00–19:00<br />Сб: 10:00–16:00<br />Вс: выходной</p>
+      </div>
+    </div>
+    <div class="footer__bottom">
+      <div class="container">
+        <p>© 2011–2026 СтройМастер. Все права защищены. Демо-проект.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========== MODALS ========== -->
+  <!-- Login modal -->
+  <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginModalTitle" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog">
+      <button type="button" class="modal__close" data-close-modal aria-label="Закрыть">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <h2 id="loginModalTitle">Вход в личный кабинет</h2>
+      <p class="modal__hint">
+        Демо-аккаунты:<br />
+        <code>client@demo.ru</code> / <code>client123</code><br />
+        <code>manager@demo.ru</code> / <code>manager123</code>
+      </p>
+      <form id="loginForm" novalidate>
+        <div class="form__group">
+          <label for="login-email">Email</label>
+          <input type="email" id="login-email" name="email" required autocomplete="username" placeholder="you@example.com" />
+          <span class="form__error" data-error="email"></span>
+        </div>
+        <div class="form__group">
+          <label for="login-password">Пароль</label>
+          <input type="password" id="login-password" name="password" required autocomplete="current-password" placeholder="••••••••" />
+          <span class="form__error" data-error="password"></span>
+        </div>
+        <p class="form__error form__error--global" id="loginError"></p>
+        <button type="submit" class="btn btn--primary btn--block">
+          <i class="fa-solid fa-right-to-bracket"></i> Войти
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Generic form modal (CRUD) -->
+  <div class="modal" id="formModal" role="dialog" aria-modal="true" aria-labelledby="formModalTitle" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog modal__dialog--lg">
+      <button type="button" class="modal__close" data-close-modal aria-label="Закрыть">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <h2 id="formModalTitle">Форма</h2>
+      <div id="formModalBody"></div>
+    </div>
+  </div>
+
+  <!-- Confirm modal -->
+  <div class="modal" id="confirmModal" role="dialog" aria-modal="true" aria-labelledby="confirmModalTitle" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog modal__dialog--sm">
+      <h2 id="confirmModalTitle">Подтверждение</h2>
+      <p id="confirmModalText">Вы уверены?</p>
+      <div class="modal__actions">
+        <button type="button" class="btn btn--ghost" data-close-modal>Отмена</button>
+        <button type="button" class="btn btn--danger" id="confirmOkBtn">Удалить</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast container -->
+  <div class="toasts" id="toasts" aria-live="polite"></div>
+
+  <!-- Portfolio item modal -->
+  <div class="modal" id="portfolioModal" role="dialog" aria-modal="true" hidden>
+    <div class="modal__backdrop" data-close-modal></div>
+    <div class="modal__dialog">
+      <button type="button" class="modal__close" data-close-modal aria-label="Закрыть">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <div id="portfolioModalBody"></div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

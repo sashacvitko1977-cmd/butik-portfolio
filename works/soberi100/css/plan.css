@@ -1,0 +1,83 @@
+.page-title{font-size:clamp(26px,3.4vw,36px); margin:12px 0 10px;}
+
+.plan-layout{
+  display:grid;
+  grid-template-columns:340px 1fr;
+  gap:24px;
+  margin-top:40px;
+  align-items:start;
+}
+
+.plan-form{
+  padding:26px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  position:sticky;
+  top:96px;
+}
+.field{display:flex; flex-direction:column; gap:8px;}
+.field label{font-size:13.5px; color:var(--text-2); font-weight:500;}
+.field select, .field input[type="number"]{
+  padding:11px 14px;
+  border-radius:12px;
+  border:1px solid var(--border-strong);
+  background:var(--bg-3);
+  color:var(--text-0);
+  font-family:var(--font-body);
+  font-size:14.5px;
+}
+.field input[type="range"]{width:100%; accent-color:var(--blue);}
+
+/* ---- Output ---- */
+.plan-output{min-height:200px;}
+.plan-empty{
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  text-align:center;
+  padding:70px 30px;
+  border:1px dashed var(--border-strong);
+  border-radius:var(--radius-lg);
+  color:var(--text-2);
+  gap:10px;
+}
+.plan-empty .score-ring{margin-bottom:12px;}
+
+.plan-summary{
+  display:flex;
+  align-items:center;
+  gap:22px;
+  padding:24px 28px;
+  margin-bottom:22px;
+}
+.plan-summary h3{font-size:19px; margin-bottom:4px;}
+.plan-summary p{margin:0; color:var(--text-2); font-size:13.5px;}
+
+.plan-weeks{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+.week-card{
+  padding:20px 22px;
+  animation:msgIn .4s var(--ease);
+}
+.week-card-head{display:flex; align-items:center; justify-content:space-between; margin-bottom:12px;}
+.week-num{font-family:var(--font-mono); font-size:13px; color:var(--blue-soft); font-weight:700;}
+.week-hours{font-family:var(--font-mono); font-size:11.5px; color:var(--text-2);}
+.week-card ul{display:flex; flex-direction:column; gap:8px;}
+.week-card li{
+  font-size:13.5px; color:var(--text-1);
+  padding-left:18px; position:relative;
+}
+.week-card li::before{
+  content:'';
+  position:absolute; left:0; top:7px;
+  width:6px; height:6px; border-radius:50%;
+  background:var(--grad-brand);
+}
+
+@media (max-width:940px){
+  .plan-layout{grid-template-columns:1fr;}
+  .plan-form{position:static;}
+  .plan-weeks{grid-template-columns:1fr;}
+}

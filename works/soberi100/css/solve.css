@@ -1,0 +1,76 @@
+.solve-layout{
+  display:grid;
+  grid-template-columns:380px 1fr;
+  gap:24px;
+  margin-top:40px;
+  align-items:start;
+}
+.solve-form{
+  padding:26px;
+  display:flex;
+  flex-direction:column;
+  gap:18px;
+  position:sticky;
+  top:96px;
+}
+.solve-form textarea{
+  padding:12px 14px;
+  border-radius:12px;
+  border:1px solid var(--border-strong);
+  background:var(--bg-3);
+  color:var(--text-0);
+  font-family:var(--font-body);
+  font-size:14px;
+  resize:vertical;
+}
+.solve-examples{display:flex; flex-direction:column; gap:6px; padding-top:6px; border-top:1px solid var(--border);}
+.example-chip{
+  text-align:left;
+  padding:8px 10px;
+  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--bg-1);
+  color:var(--text-2);
+  font-size:12.5px;
+  cursor:pointer;
+  transition:border-color .2s, color .2s;
+}
+.example-chip:hover{border-color:var(--blue-soft); color:var(--text-0);}
+
+.solve-output{min-height:200px;}
+.solve-card{padding:28px; animation:msgIn .4s var(--ease);}
+.solve-card h4{font-size:18px; margin-bottom:14px;}
+.solve-steps{counter-reset:step; display:flex; flex-direction:column; gap:14px; margin:0; padding:0;}
+.solve-step{
+  display:flex; gap:14px;
+  padding:16px 18px;
+  border-radius:14px;
+  background:var(--bg-3);
+  border:1px solid var(--border);
+}
+.solve-step-num{
+  flex:none;
+  width:30px; height:30px; border-radius:50%;
+  background:var(--grad-brand);
+  color:#fff;
+  font-family:var(--font-mono);
+  font-weight:700; font-size:13px;
+  display:flex; align-items:center; justify-content:center;
+}
+.solve-step p{margin:0; font-size:14.5px; color:var(--text-1);}
+.solve-answer{
+  margin-top:18px;
+  padding:16px 18px;
+  border-radius:14px;
+  background:var(--grad-brand-soft);
+  border:1px solid var(--border);
+}
+.solve-answer-label{
+  font-family:var(--font-mono); font-size:11px; text-transform:uppercase;
+  letter-spacing:.05em; color:var(--blue-soft); display:block; margin-bottom:4px;
+}
+
+@media (max-width:940px){
+  .solve-layout{grid-template-columns:1fr;}
+  .solve-form{position:static;}
+}
