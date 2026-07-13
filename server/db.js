@@ -24,7 +24,7 @@ function ensureData() {
 function read(file) {
   ensureData();
   try {
-    return JSON.parse(fs.readFileSync(file, 'utf8'));
+    return JSON.parse(fs.readFileSync(file, { encoding: 'utf8' }));
   } catch {
     return [];
   }
@@ -32,7 +32,8 @@ function read(file) {
 
 function write(file, data) {
   ensureData();
-  fs.writeFileSync(file, JSON.stringify(data, null, 2), 'utf8');
+  // Explicit utf8 so Cyrillic is stored correctly on all platforms
+  fs.writeFileSync(file, JSON.stringify(data, null, 2), { encoding: 'utf8' });
 }
 
 function id() {

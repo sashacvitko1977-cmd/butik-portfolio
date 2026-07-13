@@ -55,12 +55,17 @@ const ReviewsApp = (() => {
   }
 
   async function api(path, options = {}) {
-    const headers = { 'Content-Type': 'application/json', ...(options.headers || {}) };
+    const headers = {
+      Accept: 'application/json',
+      'Content-Type': 'application/json; charset=utf-8',
+      ...(options.headers || {}),
+    };
     const token = getToken();
     if (token) headers.Authorization = `Bearer ${token}`;
 
     let res;
     try {
+      // body must stay a JS string — fetch encodes JSON as UTF-8 automatically
       res = await fetch(apiUrl(path), { ...options, headers, cache: 'no-store' });
     } catch {
       throw new Error('Сервер отзывов недоступен. Попробуйте позже.');

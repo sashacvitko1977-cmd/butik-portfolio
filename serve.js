@@ -58,10 +58,12 @@ function corsHeaders() {
 }
 
 function sendJson(res, status, body) {
-  const payload = JSON.stringify(body);
+  // Always emit real UTF-8 bytes (Cyrillic must not become "?")
+  const payload = Buffer.from(JSON.stringify(body), 'utf8');
   res.writeHead(status, {
     'Content-Type': 'application/json; charset=utf-8',
     'Cache-Control': 'no-store',
+    'Content-Length': payload.length,
     ...corsHeaders(),
   });
   res.end(payload);
@@ -81,6 +83,7 @@ function readBody(req) {
       chunks.push(chunk);
     });
     req.on('end', () => {
+      // Explicit UTF-8 decode — never use latin1 / default system codepage
       const raw = Buffer.concat(chunks).toString('utf8');
       if (!raw) return resolve({});
       try {
@@ -193,6 +196,20 @@ async function handleApi(req, res, pathname) {
       if (!user) return sendJson(res, 401, { error: 'Нужна авторизация' });
       db.deleteReview(user.id);
       return sendJson(res, 200, { ok: true, reviews: db.listReviews() });
+    }
+
+    // One-time cleanup of broken/test reviews (optional ADMIN_SECRET)
+    if (method === 'POST' && pathname === '/api/admin/reset-reviews') {
+      const body = await readBody(req);
+      const secret = process.env.ADMIN_SECRET || 'butik-admin-reset';
+      if (body.secret !== secret) return sendJson(res, 403, { error: 'Forbidden' });
+      const fs = require('fs');
+      const path = require('path');
+      const dataDir = path.resolve(process.env.DATA_DIR || path.join(__dirname, 'data'));
+      for (const name of ['users.json', 'sessions.json', 'reviews.json']) {
+        fs.writeFileSync(path.join(dataDir, name), '[]', 'utf8');
+      }
+      return sendJson(res, 200, { ok: true, message: 'reviews cleared' });
     }
 
     return sendJson(res, 404, { error: 'API not found' });
