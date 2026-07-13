@@ -72,6 +72,7 @@ function toast(message, type = 'info') {
     setTimeout(() => el.remove(), 300);
   }, 3000);
 }
+window.toast = toast;
 
 async function copyText(text) {
   try {
@@ -471,13 +472,12 @@ function parseHash() {
     return { page: 'blog', articleId: raw };
   }
 
-  const valid = ['home', 'about', 'services', 'portfolio', 'blog', 'contact'];
-  const page = valid.includes(raw) ? raw : (raw ? 'home' : 'home');
+  const valid = ['home', 'about', 'services', 'portfolio', 'reviews', 'blog', 'contact'];
   return { page: raw && valid.includes(raw) ? raw : 'home', articleId: null };
 }
 
 function navigateTo(page, articleId = null, updateHash = true) {
-  const valid = ['home', 'about', 'services', 'portfolio', 'blog', 'contact'];
+  const valid = ['home', 'about', 'services', 'portfolio', 'reviews', 'blog', 'contact'];
 
   // On blog.html stay within blog (external links go to index.html)
   if (isBlogEntry()) {
@@ -512,6 +512,9 @@ function navigateTo(page, articleId = null, updateHash = true) {
 
   // Page-specific renders
   if (page === 'portfolio') renderPortfolio();
+  if (page === 'reviews') {
+    window.ReviewsApp?.refresh?.();
+  }
   if (page === 'blog') {
     if (articleId) showArticle(articleId);
     else showBlogList();

@@ -5,27 +5,52 @@
 ## Стек
 
 - HTML / CSS / JavaScript
-- Vercel-ready (`vercel.json`)
+- Node.js API для отзывов (регистрация + общий список)
 - Вложенные кейсы в `works/`
 
 ## Локальный запуск
+
+**Важно:** раздел «Отзывы» работает только через сервер Node (не через простое открытие `index.html`).
 
 ```bash
 node serve.js
 ```
 
-Открой в браузере адрес из консоли (обычно `http://localhost:3000`).
+Открой: [http://localhost:8765](http://localhost:8765) → **Отзывы**.
+
+### Как работают отзывы
+
+1. Посетитель регистрируется (имя, email, пароль) или входит
+2. Пишет отзыв и ставит оценку 1–5
+3. Отзыв сразу виден **всем** посетителям сайта
+4. Один аккаунт = один отзыв (можно обновить или удалить)
+
+Данные хранятся в `data/` (`users.json`, `sessions.json`, `reviews.json`) — папка в `.gitignore`.
+
+### API
+
+| Метод | Путь | Описание |
+|-------|------|----------|
+| GET | `/api/reviews` | Список отзывов (публично) |
+| POST | `/api/register` | Регистрация |
+| POST | `/api/login` | Вход |
+| GET | `/api/me` | Текущий пользователь |
+| POST | `/api/reviews` | Создать / обновить отзыв (нужен токен) |
+| DELETE | `/api/reviews/mine` | Удалить свой отзыв |
 
 ## Структура
 
 ```text
-index.html      # главная
+index.html      # главная (SPA)
 blog.html       # блог
-css/            # стили
-js/             # скрипты
-works/          # демо-проекты (elegiya, kotodom, soberi100, stroy-master)
+serve.js        # статика + API отзывов
+server/db.js    # хранилище JSON
+css/ js/        # фронт
+works/          # кейсы
+data/           # runtime-данные (не в git)
 ```
 
 ## Деплой
 
-Репозиторий можно подключить к [Vercel](https://vercel.com) — конфиг уже в `vercel.json`.
+Для отзывов нужен **Node-хостинг** (Railway, Render, VPS) с командой `node serve.js`.  
+Чистый статический Vercel/GitHub Pages **не сохранит** отзывы между пользователями.

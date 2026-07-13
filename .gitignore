@@ -5,3 +5,8 @@ Thumbs.db
 **/node_modules/
 **/bot/data/
 **/bot/.env
+
+# reviews auth data (created at runtime)
+data/users.json
+data/sessions.json
+data/reviews.json

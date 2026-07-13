@@ -1,0 +1,13 @@
+{
+  "name": "butik-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Butik frontend portfolio with reviews API",
+  "scripts": {
+    "start": "node serve.js",
+    "serve": "node serve.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

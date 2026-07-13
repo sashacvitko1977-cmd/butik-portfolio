@@ -39,6 +39,7 @@
         <a href="#about" class="nav__link" data-nav="about">Обо мне</a>
         <a href="#services" class="nav__link" data-nav="services">Услуги</a>
         <a href="#portfolio" class="nav__link" data-nav="portfolio">Портфолио</a>
+        <a href="#reviews" class="nav__link" data-nav="reviews">Отзывы</a>
         <a href="#contact" class="nav__link" data-nav="contact">Контакты</a>
       </nav>
 
@@ -63,6 +64,7 @@
       <a href="#about" data-nav="about">Обо мне</a>
       <a href="#services" data-nav="services">Услуги</a>
       <a href="#portfolio" data-nav="portfolio">Портфолио</a>
+      <a href="#reviews" data-nav="reviews">Отзывы</a>
       <a href="#contact" data-nav="contact">Контакты</a>
     </nav>
     <div class="mobile-menu__social">
@@ -431,6 +433,111 @@
       </div>
     </section>
 
+    <!-- ========== REVIEWS ========== -->
+    <section class="page" id="page-reviews" data-page="reviews">
+      <div class="page-hero">
+        <div class="container">
+          <span class="eyebrow">Отзывы</span>
+          <h1 class="page-hero__title">Что говорят клиенты</h1>
+          <p class="page-hero__desc">
+            Реальные отзывы посетителей · <span id="reviewsCount">0</span> шт.
+          </p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container reviews-layout">
+          <!-- Public list -->
+          <div class="reviews-list-wrap">
+            <div class="section-head reveal">
+              <h2>Все отзывы</h2>
+              <p>Видны каждому, кто зашёл на сайт</p>
+            </div>
+            <div class="reviews-grid" id="reviewsGrid"></div>
+            <div class="reviews-empty hidden" id="reviewsEmpty">
+              <i class="fa-regular fa-comments"></i>
+              <p>Пока нет отзывов. Будьте первым!</p>
+            </div>
+          </div>
+
+          <!-- Auth + form -->
+          <aside class="reviews-panel reveal">
+            <div class="reviews-panel__card">
+              <h3><i class="fa-solid fa-pen-to-square"></i> Оставить отзыв</h3>
+              <p class="reviews-panel__hint">
+                Чтобы написать отзыв, зарегистрируйтесь или войдите. Один аккаунт — один отзыв (можно обновить).
+              </p>
+
+              <!-- Guest: register / login -->
+              <div id="reviewsGuest">
+                <div class="auth-tabs" role="tablist">
+                  <button type="button" class="auth-tab is-active" data-auth-tab="register">Регистрация</button>
+                  <button type="button" class="auth-tab" data-auth-tab="login">Вход</button>
+                </div>
+
+                <form id="authRegisterForm" class="auth-form" autocomplete="on">
+                  <label class="field">
+                    <span>Имя</span>
+                    <input type="text" name="name" required minlength="2" maxlength="40" placeholder="Как к вам обращаться" />
+                  </label>
+                  <label class="field">
+                    <span>Email</span>
+                    <input type="email" name="email" required placeholder="you@mail.com" />
+                  </label>
+                  <label class="field">
+                    <span>Пароль</span>
+                    <input type="password" name="password" required minlength="6" placeholder="Минимум 6 символов" />
+                  </label>
+                  <button type="submit" class="btn btn--primary btn--block">
+                    <i class="fa-solid fa-user-plus"></i> Создать аккаунт
+                  </button>
+                </form>
+
+                <form id="authLoginForm" class="auth-form hidden" autocomplete="on">
+                  <label class="field">
+                    <span>Email</span>
+                    <input type="email" name="email" required placeholder="you@mail.com" />
+                  </label>
+                  <label class="field">
+                    <span>Пароль</span>
+                    <input type="password" name="password" required minlength="6" placeholder="Ваш пароль" />
+                  </label>
+                  <button type="submit" class="btn btn--primary btn--block">
+                    <i class="fa-solid fa-right-to-bracket"></i> Войти
+                  </button>
+                </form>
+              </div>
+
+              <!-- Logged in: write review -->
+              <div id="reviewsMember" class="hidden">
+                <div class="reviews-userbar">
+                  <span>Вы вошли как <strong id="reviewsUserLabel">—</strong></span>
+                  <button type="button" class="btn btn--ghost btn--sm" id="reviewLogout">Выйти</button>
+                </div>
+
+                <form id="reviewForm" class="auth-form">
+                  <div class="field">
+                    <span>Оценка</span>
+                    <div class="review-rating" id="reviewRating" aria-label="Оценка от 1 до 5"></div>
+                  </div>
+                  <label class="field">
+                    <span>Текст отзыва</span>
+                    <textarea id="reviewText" name="text" rows="5" required minlength="10" maxlength="1000" placeholder="Расскажите о сотрудничестве: сроки, качество, результат…"></textarea>
+                  </label>
+                  <button type="submit" class="btn btn--primary btn--block" id="reviewSubmit">
+                    <i class="fa-solid fa-paper-plane"></i> Опубликовать отзыв
+                  </button>
+                  <button type="button" class="btn btn--ghost btn--block" id="reviewDelete">
+                    <i class="fa-regular fa-trash-can"></i> Удалить мой отзыв
+                  </button>
+                </form>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
     <!-- ========== CONTACT ========== -->
     <section class="page" id="page-contact" data-page="contact">
       <div class="page-hero">
@@ -506,5 +613,6 @@
   <script src="js/page-drop.js"></script>
   <script src="js/hero-animations.js"></script>
   <script src="js/main.js"></script>
+  <script src="js/reviews.js"></script>
 </body>
 </html>
