@@ -200,19 +200,8 @@ const ReviewsApp = (() => {
     }
   }
 
-  function showModeBanner(cloudOk) {
-    const el = $('#reviewsModeBanner');
-    if (!el) return;
-    if (cloudOk) {
-      el.classList.add('hidden');
-      return;
-    }
-    el.classList.remove('hidden');
-    el.innerHTML = `
-      <i class="fa-solid fa-wifi"></i>
-      Облако временно недоступно — отзывы сохраняются <b>только в этом браузере</b>.
-      Обновите страницу позже, чтобы синхронизировать.
-    `;
+  function showModeBanner() {
+    $('#reviewsModeBanner')?.classList.add('hidden');
   }
 
   function publicReview(r) {
@@ -513,7 +502,7 @@ const ReviewsApp = (() => {
           });
         }
       });
-      toast('Отзыв опубликован — его видят все посетители', 'success');
+      toast('Отзыв опубликован', 'success');
       await refresh();
     } catch (err) {
       toast(err.message || 'Не удалось сохранить отзыв', 'error');
