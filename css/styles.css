@@ -121,6 +121,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  scroll-padding-top: calc(var(--header-h) + 12px);
 }
 
 body {
@@ -131,6 +132,7 @@ body {
   background: var(--bg);
   min-height: 100vh;
   overflow-x: hidden;
+  overflow-y: auto;
   transition: background 0.3s var(--ease), color 0.3s var(--ease);
 }
 
@@ -443,17 +445,27 @@ img.logo__mark {
   .header__actions .btn--sm { display: none; }
 }
 
-/* ---------- SPA pages ---------- */
+/* ---------- Landing sections (single-page scroll) ---------- */
 .page {
-  display: none;
-  min-height: calc(100vh - var(--header-h));
-  animation: pageIn 0.45s var(--ease);
+  display: block;
+  min-height: auto;
+  padding-bottom: 1rem;
 }
 .page--active { display: block; }
 
-@keyframes pageIn {
-  from { opacity: 0; transform: translateY(12px); }
-  to { opacity: 1; transform: translateY(0); }
+/* First section fills viewport like a classic landing hero */
+.page[data-page="home"] {
+  min-height: 100vh;
+  min-height: 100dvh;
+}
+
+/* Spacing between stacked sections */
+.page + .page {
+  border-top: 1px solid var(--border, rgba(255, 255, 255, 0.06));
+}
+
+.page .page-hero {
+  padding-top: clamp(4.5rem, 10vh, 6.5rem);
 }
 
 /* Reveal on scroll */

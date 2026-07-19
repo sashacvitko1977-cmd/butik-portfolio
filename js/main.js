@@ -1,7 +1,7 @@
 /**
  * ============================================================
- * Butik — Portfolio + Blog
- * Vanilla JS (ES6+) · SPA navigation · localStorage blog
+ * Butik — Portfolio landing
+ * Vanilla JS (ES6+) · single-page scroll · localStorage blog
  * ============================================================
  */
 
@@ -422,31 +422,62 @@ function applyTheme(theme) {
 }
 
 /* ============================================================
-   SPA NAVIGATION
+   LANDING NAVIGATION (single-page scroll)
    ============================================================ */
+const SECTION_IDS = ['home', 'about', 'services', 'portfolio', 'blog', 'contact'];
+
+function sectionEl(page) {
+  return $(`.page[data-page="${page}"]`) || document.getElementById(`page-${page}`);
+}
+
 function initNavigation() {
   document.addEventListener('click', (e) => {
     const link = e.target.closest('[data-nav]');
     if (!link) return;
     e.preventDefault();
-    navigateTo(link.getAttribute('data-nav'));
+    const page = link.getAttribute('data-nav');
+    scrollToSection(page, true);
+    closeMobileMenu();
+  });
+
+  // Plain hash links (#about) without data-nav
+  document.addEventListener('click', (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a || a.hasAttribute('data-nav')) return;
+    const id = a.getAttribute('href').slice(1);
+    if (!id || id.includes('/')) return;
+    const page = id.replace(/^page-/, '');
+    if (!SECTION_IDS.includes(page) && !document.getElementById(id)) return;
+    e.preventDefault();
+    if (SECTION_IDS.includes(page)) scrollToSection(page, true);
+    else document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
     closeMobileMenu();
   });
 
   window.addEventListener('hashchange', () => {
     const { page, articleId } = parseHash();
-    if (page !== state.page || articleId !== state.articleId) {
-      navigateTo(page, articleId, false);
+    if (articleId) {
+      showArticle(articleId);
+      scrollToSection('blog', false);
+      return;
     }
+    if (page === 'blog') showBlogList();
+    scrollToSection(page, false);
   });
 
-  // Header scroll style
-  window.addEventListener('scroll', () => {
-    $('#header')?.classList.toggle('scrolled', window.scrollY > 20);
-  }, { passive: true });
+  window.addEventListener('scroll', onScrollLanding, { passive: true });
 
   const { page, articleId } = parseHash();
-  navigateTo(page, articleId, false);
+  // Initial paint: all sections visible; jump without animation if deep-link
+  if (articleId) {
+    showArticle(articleId);
+    requestAnimationFrame(() => scrollToSection('blog', false, 'auto'));
+  } else if (page && page !== 'home') {
+    requestAnimationFrame(() => scrollToSection(page, false, 'auto'));
+  } else {
+    setActiveNav('home');
+  }
+  onScrollLanding();
 }
 
 function isBlogEntry() {
@@ -456,9 +487,7 @@ function isBlogEntry() {
 
 function parseHash() {
   const raw = location.hash.replace(/^#/, '');
-  const isBlogPage = isBlogEntry();
 
-  // blog.html#a1 or index.html#blog/a1
   if (raw.startsWith('blog/')) {
     return { page: 'blog', articleId: raw.slice(5) || null };
   }
@@ -466,75 +495,80 @@ function parseHash() {
     return { page: 'blog', articleId: raw.slice(8) || null };
   }
 
-  // On dedicated blog.html: empty hash = list, any other id = article
-  if (isBlogPage) {
+  if (isBlogEntry()) {
     if (!raw || raw === 'blog') return { page: 'blog', articleId: null };
     return { page: 'blog', articleId: raw };
   }
 
-  const valid = ['home', 'about', 'services', 'portfolio', 'blog', 'contact'];
-  return { page: raw && valid.includes(raw) ? raw : 'home', articleId: null };
+  const page = raw.replace(/^page-/, '');
+  return {
+    page: page && SECTION_IDS.includes(page) ? page : 'home',
+    articleId: null,
+  };
 }
 
-function navigateTo(page, articleId = null, updateHash = true) {
-  const valid = ['home', 'about', 'services', 'portfolio', 'blog', 'contact'];
-
-  // On blog.html stay within blog (external links go to index.html)
-  if (isBlogEntry()) {
-    page = 'blog';
-  }
-
-  if (!valid.includes(page)) page = 'home';
-
+function setActiveNav(page) {
   state.page = page;
-  state.articleId = articleId;
-
-  $$('.page').forEach((p) => {
-    p.classList.toggle('page--active', p.dataset.page === page);
-  });
-
   $$('.nav__link').forEach((l) => {
     const nav = l.dataset.nav;
     if (nav) l.classList.toggle('active', nav === page);
   });
+}
+
+function scrollToSection(page, updateHash = true, behavior = 'smooth') {
+  if (!SECTION_IDS.includes(page)) page = 'home';
+  const el = sectionEl(page);
+  if (!el) return;
+
+  setActiveNav(page);
 
   if (updateHash) {
-    let h;
-    if (isBlogEntry()) {
-      h = articleId || '';
-    } else {
-      h = articleId ? `blog/${articleId}` : page;
+    const h = page === 'home' ? 'home' : page;
+    history.replaceState(null, '', `#${h}`);
+  }
+
+  const headerH = $('#header')?.offsetHeight || 72;
+  const top = el.getBoundingClientRect().top + window.scrollY - headerH - 8;
+  window.scrollTo({ top: Math.max(0, top), behavior });
+}
+
+function onScrollLanding() {
+  $('#header')?.classList.toggle('scrolled', window.scrollY > 20);
+
+  const headerH = ($('#header')?.offsetHeight || 72) + 24;
+  const y = window.scrollY + headerH;
+  let current = 'home';
+
+  SECTION_IDS.forEach((id) => {
+    const el = sectionEl(id);
+    if (!el) return;
+    if (el.offsetTop <= y) current = id;
+  });
+
+  if (current !== state.page) setActiveNav(current);
+
+  // Counters when hero stats enter view
+  const heroStats = $('.hero-card__stats');
+  if (heroStats && !state.countersAnimated) {
+    const rect = heroStats.getBoundingClientRect();
+    if (rect.top < window.innerHeight * 0.9 && rect.bottom > 0) {
+      animateCounters();
     }
-    history.replaceState(null, '', h ? `#${h}` : (isBlogEntry() ? location.pathname : `#${page}`));
   }
+}
 
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  // Page-specific renders
-  if (page === 'portfolio') renderPortfolio();
-  if (page === 'blog') {
-    if (articleId) showArticle(articleId);
-    else showBlogList();
+/** @deprecated keep name for blog handlers */
+function navigateTo(page, articleId = null, updateHash = true) {
+  if (articleId) {
+    state.articleId = articleId;
+    showArticle(articleId);
+    if (updateHash) history.replaceState(null, '', `#blog/${articleId}`);
+    scrollToSection('blog', false);
+    return;
   }
-  if (page === 'home') {
-    state.countersAnimated = false;
-    setTimeout(animateCounters, 400);
-  }
-
-  const runPageDrop = () => {
-    const activePage = $(`.page[data-page="${page}"]`);
-    window.PageDrop?.animate(activePage);
-    if (page !== 'home') observeReveals();
-  };
-
-  // Портфолио рендерится в JS — даём DOM обновиться перед падением карточек
-  if (page === 'portfolio') {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(runPageDrop);
-    });
-  } else {
-    requestAnimationFrame(runPageDrop);
-  }
+  state.articleId = null;
+  if (page === 'blog') showBlogList();
+  scrollToSection(page, updateHash);
 }
 
 /* Mobile menu */
@@ -897,25 +931,49 @@ function initContact() {
 function init() {
   seedArticles();
   initTheme();
-  initNavigation();
   initMobileMenu();
   initModals();
   initPortfolio();
   initBlog();
   initContact();
 
-  // Initial page content (portfolio/blog — уже отрисовано в navigateTo)
-  if (state.page === 'blog') {
-    if (state.articleId) showArticle(state.articleId);
-    else showBlogList();
-  }
-  if (state.page === 'home') setTimeout(animateCounters, 500);
+  // Landing: render everything once, then scroll-nav
+  renderPortfolio();
+  showBlogList();
+  initNavigation();
+
+  // Hero drop-in + scroll reveals for all sections
+  requestAnimationFrame(() => {
+    const home = sectionEl('home');
+    window.PageDrop?.animate(home);
+    observeReveals();
+  });
+
+  // Stagger section reveals when they enter viewport
+  initSectionDrops();
 
   console.info(
     '%cButik Portfolio',
     'color:#888;font-weight:bold;font-size:13px',
-    '\n@butik_43 · SPA ready'
+    '\n@butik_43 · landing scroll'
   );
+}
+
+function initSectionDrops() {
+  const sections = $$('.page').filter((p) => p.dataset.page && p.dataset.page !== 'home');
+  if (!sections.length || !window.PageDrop) return;
+
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) return;
+        window.PageDrop.animate(entry.target);
+        io.unobserve(entry.target);
+      });
+    },
+    { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
+  );
+  sections.forEach((s) => io.observe(s));
 }
 
 document.addEventListener('DOMContentLoaded', init);
