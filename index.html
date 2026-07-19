@@ -28,7 +28,6 @@
 <body>
   <!-- Ambient background glow -->
   <div class="bg-glow" aria-hidden="true"></div>
-  <canvas class="hero-particles" id="heroParticles" aria-hidden="true"></canvas>
 
   <!-- ========== HEADER ========== -->
   <header class="header" id="header">
@@ -78,6 +77,9 @@
     <!-- ========== HOME / HERO ========== -->
     <section class="page page--active" id="page-home" data-page="home">
       <div class="hero" id="hero">
+        <!-- Dotted Surface (21st.dev/@sshahaider/components/dotted-surface) -->
+        <div class="dotted-surface" id="dottedSurface" aria-hidden="true"></div>
+
         <div class="container hero__grid">
           <div class="hero__content">
             <div class="hero__badge hero-drop" style="--drop-i:0">
@@ -111,26 +113,10 @@
                 <em>portfolio.tsx</em>
               </div>
               <pre class="hero-card__code"><code id="heroCode"></code><span class="hero-code-cursor" aria-hidden="true"></span></pre>
-              <div class="hero-card__stats">
-                <div>
-                  <strong class="counter" data-target="1" data-suffix="">0</strong>
-                  <span>год опыта</span>
-                </div>
-                <div>
-                  <strong class="counter" data-target="10" data-suffix="+">0</strong>
-                  <span>проектов</span>
-                </div>
-                <div>
-                  <strong class="counter" data-target="10" data-suffix="+">0</strong>
-                  <span>задач</span>
-                </div>
-              </div>
             </div>
           </div>
         </div>
-
       </div>
-
     </section>
 
     <!-- ========== ABOUT ========== -->
@@ -381,9 +367,17 @@
   <!-- Toast -->
   <div class="toasts" id="toasts" aria-live="polite"></div>
 
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js"
+    }
+  }
+  </script>
   <script src="js/config.js"></script>
   <script src="js/page-drop.js"></script>
   <script src="js/hero-animations.js"></script>
+  <script type="module" src="js/dotted-surface.js"></script>
   <script src="js/main.js"></script>
 </body>
 </html>

@@ -252,7 +252,7 @@
     initDropLandmarks();
     initCodeTyping();
     initCardParallax();
-    initParticles();
+    // particles replaced by Three.js dotted-surface
     initMagneticButtons();
   }
 

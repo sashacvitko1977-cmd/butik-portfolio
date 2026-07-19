@@ -493,8 +493,25 @@ img.logo__mark {
   padding: calc(var(--header-h) + 2rem) 0 4rem;
   position: relative;
   z-index: 1;
+  overflow: hidden;
+}
+
+/* Dotted Surface (Three.js wave) */
+.dotted-surface {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+.dotted-surface__canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
 }
 .hero__grid {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
   gap: 3rem;
@@ -633,7 +650,11 @@ img.logo__mark {
 
 .hero-card__code {
   position: relative;
-  min-height: 9.5rem;
+  min-height: 8.5rem;
+  margin-bottom: 0;
+}
+.hero-card__stats {
+  display: none !important;
 }
 .hero-code-cursor {
   display: inline-block;
@@ -829,6 +850,7 @@ img.logo__mark {
   .hero-card__shine { display: none; }
   .gradient-text--shimmer { animation: none; }
   .hero-particles { display: none; }
+  .dotted-surface { opacity: 0.85; }
 }
 
 /* Marquee */
