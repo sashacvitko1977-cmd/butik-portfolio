@@ -30,10 +30,10 @@
   /** Задержка до приземления карточки (для печати кода) */
   function getCardLandDelay() {
     const card = document.getElementById('heroCard');
-    if (!card) return 1600;
-    const dropI = parseInt(card.style.getPropertyValue('--drop-i') || '11', 10);
-    const delay = 100 + dropI * 70;
-    const duration = 1400;
+    if (!card) return 700;
+    const dropI = parseInt(card.style.getPropertyValue('--drop-i') || '6', 10);
+    const delay = 50 + dropI * 40;
+    const duration = 750;
     return Math.round(delay + duration);
   }
 
@@ -50,7 +50,7 @@
     clearTimeout(typingTimer);
     const startDelay = getCardLandDelay();
     let i = 0;
-    const charDelay = 28;
+    const charDelay = 18;
 
     function type() {
       if (i <= CODE_PLAIN.length) {
@@ -83,27 +83,27 @@
       parallaxAbort = new AbortController();
       const { signal } = parallaxAbort;
 
-      let targetX = -4;
-      let targetY = 2;
-      let currentX = -4;
-      let currentY = 2;
+      let targetX = -2;
+      let targetY = 1;
+      let currentX = -2;
+      let currentY = 1;
 
       visual.addEventListener('mousemove', (e) => {
         const rect = visual.getBoundingClientRect();
         const nx = (e.clientX - rect.left) / rect.width - 0.5;
         const ny = (e.clientY - rect.top) / rect.height - 0.5;
-        targetX = nx * 14 - 4;
-        targetY = ny * -10 + 2;
+        targetX = nx * 6 - 2;
+        targetY = ny * -4 + 1;
       }, { signal });
 
       visual.addEventListener('mouseleave', () => {
-        targetX = -4;
-        targetY = 2;
+        targetX = -2;
+        targetY = 1;
       }, { signal });
 
       function tick() {
-        currentX += (targetX - currentX) * 0.08;
-        currentY += (targetY - currentY) * 0.08;
+        currentX += (targetX - currentX) * 0.06;
+        currentY += (targetY - currentY) * 0.06;
         card.style.setProperty('--tilt-x', `${currentY}deg`);
         card.style.setProperty('--tilt-y', `${currentX}deg`);
         requestAnimationFrame(tick);
@@ -176,7 +176,7 @@
     }
 
     function init() {
-      const count = Math.min(60, Math.floor((w * h) / 18000));
+      const count = Math.min(28, Math.floor((w * h) / 32000));
       particles = Array.from({ length: count }, create);
     }
 

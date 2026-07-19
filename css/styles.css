@@ -471,8 +471,8 @@ img.logo__mark {
 /* Reveal on scroll */
 .reveal {
   opacity: 0;
-  transform: translateY(28px);
-  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+  transform: translateY(14px);
+  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
 }
 .reveal.is-visible {
   opacity: 1;
@@ -540,55 +540,29 @@ img.logo__mark {
   inset: 0;
   z-index: 0;
   pointer-events: none;
-  opacity: 0.5;
+  opacity: 0.28;
 }
 
 .hero__line {
   display: block;
 }
 
-/* Падение сверху — плавное приземление */
+/* Мягкое появление (без «падения с неба») */
 @keyframes heroDropLand {
   0% {
     opacity: 0;
-    transform: translate3d(0, -72vh, 0);
-    filter: blur(3px);
-  }
-  35% {
-    opacity: 0.6;
-    filter: blur(1px);
-  }
-  78% {
-    opacity: 1;
-    filter: blur(0);
-    transform: translate3d(0, 5px, 0);
-  }
-  92% {
-    transform: translate3d(0, -1px, 0);
+    transform: translate3d(0, 18px, 0);
   }
   100% {
     opacity: 1;
     transform: translate3d(0, 0, 0);
-    filter: blur(0);
   }
 }
 
 @keyframes heroCardDrop {
   0% {
     opacity: 0;
-    transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translate3d(0, -75vh, 0) scale(0.94);
-    box-shadow: 0 0 0 transparent;
-  }
-  40% {
-    opacity: 0.7;
-  }
-  80% {
-    opacity: 1;
-    transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translate3d(0, 6px, 0) scale(1.01);
-    box-shadow: 0 24px 50px rgba(0, 0, 0, 0.4);
-  }
-  94% {
-    transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translate3d(0, -1px, 0) scale(1);
+    transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translate3d(0, 22px, 0) scale(0.98);
   }
   100% {
     opacity: 1;
@@ -601,16 +575,16 @@ img.logo__mark {
 .hero-drop,
 .page-drop {
   opacity: 0;
-  will-change: transform, opacity, filter;
-  animation: heroDropLand 1.25s cubic-bezier(0.25, 0.1, 0.25, 1) forwards;
-  animation-delay: calc(0.1s + var(--drop-i, 0) * 0.07s);
+  will-change: transform, opacity;
+  animation: heroDropLand 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(0.05s + var(--drop-i, 0) * 0.04s);
 }
 
 .hero-drop--card,
 .page-drop--card {
   animation-name: heroCardDrop;
-  animation-duration: 1.4s;
-  animation-timing-function: cubic-bezier(0.25, 0.1, 0.25, 1);
+  animation-duration: 0.75s;
+  animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .hero-drop.is-landed,
@@ -632,47 +606,29 @@ img.logo__mark {
 }
 
 .gradient-text--shimmer {
-  background-size: 200% auto;
-  animation: textShimmer 5s linear infinite;
-}
-@keyframes textShimmer {
-  0% { background-position: 0% center; }
-  100% { background-position: 200% center; }
+  /* shimmer disabled — keep class for compatibility */
+  background-size: 100% auto;
+  animation: none;
 }
 
 .hero-card {
-  --tilt-x: 2deg;
-  --tilt-y: -4deg;
+  --tilt-x: 1deg;
+  --tilt-y: -2deg;
   position: relative;
 }
 .hero-card.is-floating {
-  animation: heroFloat 7s ease-in-out infinite;
+  animation: heroFloat 10s ease-in-out infinite;
 }
 .hero-card.is-floating:hover {
   animation: none;
 }
 @keyframes heroFloat {
   0%, 100% { transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(0); }
-  50% { transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-12px); }
+  50% { transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translateY(-5px); }
 }
 
 .hero-card__shine {
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  pointer-events: none;
-  background: linear-gradient(
-    105deg,
-    transparent 40%,
-    rgba(255, 255, 255, 0.06) 50%,
-    transparent 60%
-  );
-  background-size: 200% 100%;
-  animation: cardShine 6s ease-in-out infinite;
-}
-@keyframes cardShine {
-  0%, 100% { background-position: 200% 0; }
-  50% { background-position: -200% 0; }
+  display: none;
 }
 
 .hero-card__code {
@@ -1133,17 +1089,17 @@ img.logo__mark {
   z-index: 1;
 }
 .service-card:hover {
-  border-color: rgba(255, 255, 255, 0.22);
-  transform: translateY(-10px) scale(1.02);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-6px) scale(1.01);
   box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.1) inset,
-    0 22px 50px rgba(0, 0, 0, 0.5),
-    0 8px 20px rgba(0, 0, 0, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.06),
-    0 0 48px rgba(255, 255, 255, 0.08);
+    0 1px 0 rgba(255, 255, 255, 0.08) inset,
+    0 16px 36px rgba(0, 0, 0, 0.42),
+    0 6px 14px rgba(0, 0, 0, 0.28),
+    0 0 0 1px rgba(255, 255, 255, 0.05),
+    0 0 28px rgba(255, 255, 255, 0.05);
 }
 .service-card:hover::before {
-  opacity: 1;
+  opacity: 0.7;
 }
 .service-card__icon {
   width: 52px;
