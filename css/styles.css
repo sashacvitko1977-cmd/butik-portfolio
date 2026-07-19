@@ -496,18 +496,18 @@ img.logo__mark {
   overflow: hidden;
 }
 
-/* Dotted Surface (Three.js wave) */
-.dotted-surface {
+/* Digital Loom — interwoven animated threads */
+.digital-loom {
   position: absolute;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
 }
-.dotted-surface__canvas {
+.digital-loom__canvas {
   display: block;
-  width: 100% !important;
-  height: 100% !important;
+  width: 100%;
+  height: 100%;
 }
 .hero__grid {
   position: relative;
@@ -850,7 +850,7 @@ img.logo__mark {
   .hero-card__shine { display: none; }
   .gradient-text--shimmer { animation: none; }
   .hero-particles { display: none; }
-  .dotted-surface { opacity: 0.85; }
+  .digital-loom { opacity: 0.9; }
 }
 
 /* Marquee */
