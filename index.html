@@ -16,9 +16,6 @@
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-  <!-- Prism.js (code highlighting for blog) -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css" />
-
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -37,8 +34,8 @@
       <nav class="nav" id="nav" aria-label="Основная навигация">
         <a href="#home" class="nav__link active" data-nav="home">Главная</a>
         <a href="#about" class="nav__link" data-nav="about">Обо мне</a>
-        <a href="#services" class="nav__link" data-nav="services">Услуги</a>
         <a href="#portfolio" class="nav__link" data-nav="portfolio">Портфолио</a>
+        <a href="#services" class="nav__link" data-nav="services">Услуги</a>
         <a href="#contact" class="nav__link" data-nav="contact">Контакты</a>
       </nav>
 
@@ -61,8 +58,8 @@
     <nav class="mobile-menu__nav">
       <a href="#home" data-nav="home">Главная</a>
       <a href="#about" data-nav="about">Обо мне</a>
-      <a href="#services" data-nav="services">Услуги</a>
       <a href="#portfolio" data-nav="portfolio">Портфолио</a>
+      <a href="#services" data-nav="services">Услуги</a>
       <a href="#contact" data-nav="contact">Контакты</a>
     </nav>
     <div class="mobile-menu__social">
@@ -194,6 +191,25 @@
 
     </section>
 
+    <!-- ========== PORTFOLIO ========== -->
+    <section class="page page--active" id="page-portfolio" data-page="portfolio">
+      <div class="page-hero">
+        <div class="container">
+          <span class="eyebrow">Портфолио</span>
+          <h2 class="page-hero__title">Примеры работ</h2>
+          <p class="page-hero__desc">Реальные проекты: можно открыть и посмотреть в деле</p>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="container">
+          <div class="portfolio-grid" id="portfolioGrid">
+            <!-- Filled by JS -->
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ========== SERVICES ========== -->
     <section class="page page--active" id="page-services" data-page="services">
       <div class="page-hero">
@@ -268,74 +284,6 @@
               </ul>
             </article>
           </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- ========== PORTFOLIO ========== -->
-    <section class="page page--active" id="page-portfolio" data-page="portfolio">
-      <div class="page-hero">
-        <div class="container">
-          <span class="eyebrow">Портфолио</span>
-          <h2 class="page-hero__title">Примеры работ</h2>
-          <p class="page-hero__desc">Реальные проекты: можно открыть и посмотреть в деле</p>
-        </div>
-      </div>
-
-      <div class="section">
-        <div class="container">
-          <div class="portfolio-grid" id="portfolioGrid">
-            <!-- Filled by JS -->
-          </div>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- ========== BLOG ========== -->
-    <section class="page page--active" id="page-blog" data-page="blog">
-      <div class="page-hero">
-        <div class="container">
-          <span class="eyebrow">Блог</span>
-          <h2 class="page-hero__title">Заметки о коде,<br />дизайне и карьере</h2>
-          <p class="page-hero__desc">Практические статьи без воды — из реального опыта</p>
-        </div>
-      </div>
-
-      <!-- Blog list view -->
-      <div class="section" id="blogListView">
-        <div class="container">
-          <div class="blog-toolbar reveal">
-            <div class="search-box">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <input type="search" id="blogSearch" placeholder="Поиск по статьям..." autocomplete="off" />
-            </div>
-            <div class="blog-cats" id="blogCategories" role="group" aria-label="Категории">
-              <!-- Filled by JS -->
-            </div>
-          </div>
-
-          <div class="blog-grid" id="blogGrid">
-            <!-- Filled by JS -->
-          </div>
-
-          <p class="blog-empty hidden" id="blogEmpty">
-            <i class="fa-regular fa-folder-open"></i>
-            Ничего не найдено. Попробуйте другой запрос.
-          </p>
-        </div>
-      </div>
-
-      <!-- Article view -->
-      <div class="section hidden" id="blogArticleView">
-        <div class="container article-wrap">
-          <button type="button" class="btn btn--ghost btn--sm article-back" id="articleBack">
-            <i class="fa-solid fa-arrow-left"></i> Все статьи
-          </button>
-          <article class="article" id="articleContent">
-            <!-- Filled by JS -->
-          </article>
         </div>
       </div>
     </section>

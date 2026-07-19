@@ -424,7 +424,7 @@ function applyTheme(theme) {
 /* ============================================================
    LANDING NAVIGATION (single-page scroll)
    ============================================================ */
-const SECTION_IDS = ['home', 'about', 'services', 'portfolio', 'blog', 'contact'];
+const SECTION_IDS = ['home', 'about', 'portfolio', 'services', 'contact'];
 
 function sectionEl(page) {
   return $(`.page[data-page="${page}"]`) || document.getElementById(`page-${page}`);
@@ -455,24 +455,14 @@ function initNavigation() {
   });
 
   window.addEventListener('hashchange', () => {
-    const { page, articleId } = parseHash();
-    if (articleId) {
-      showArticle(articleId);
-      scrollToSection('blog', false);
-      return;
-    }
-    if (page === 'blog') showBlogList();
+    const { page } = parseHash();
     scrollToSection(page, false);
   });
 
   window.addEventListener('scroll', onScrollLanding, { passive: true });
 
-  const { page, articleId } = parseHash();
-  // Initial paint: all sections visible; jump without animation if deep-link
-  if (articleId) {
-    showArticle(articleId);
-    requestAnimationFrame(() => scrollToSection('blog', false, 'auto'));
-  } else if (page && page !== 'home') {
+  const { page } = parseHash();
+  if (page && page !== 'home') {
     requestAnimationFrame(() => scrollToSection(page, false, 'auto'));
   } else {
     setActiveNav('home');
@@ -487,19 +477,6 @@ function isBlogEntry() {
 
 function parseHash() {
   const raw = location.hash.replace(/^#/, '');
-
-  if (raw.startsWith('blog/')) {
-    return { page: 'blog', articleId: raw.slice(5) || null };
-  }
-  if (raw.startsWith('article/')) {
-    return { page: 'blog', articleId: raw.slice(8) || null };
-  }
-
-  if (isBlogEntry()) {
-    if (!raw || raw === 'blog') return { page: 'blog', articleId: null };
-    return { page: 'blog', articleId: raw };
-  }
-
   const page = raw.replace(/^page-/, '');
   return {
     page: page && SECTION_IDS.includes(page) ? page : 'home',
@@ -557,17 +534,7 @@ function onScrollLanding() {
   }
 }
 
-/** @deprecated keep name for blog handlers */
-function navigateTo(page, articleId = null, updateHash = true) {
-  if (articleId) {
-    state.articleId = articleId;
-    showArticle(articleId);
-    if (updateHash) history.replaceState(null, '', `#blog/${articleId}`);
-    scrollToSection('blog', false);
-    return;
-  }
-  state.articleId = null;
-  if (page === 'blog') showBlogList();
+function navigateTo(page, _articleId = null, updateHash = true) {
   scrollToSection(page, updateHash);
 }
 
@@ -934,12 +901,10 @@ function init() {
   initMobileMenu();
   initModals();
   initPortfolio();
-  initBlog();
   initContact();
 
-  // Landing: render everything once, then scroll-nav
+  // Landing: render portfolio once, then scroll-nav
   renderPortfolio();
-  showBlogList();
   initNavigation();
 
   // Hero drop-in + scroll reveals for all sections
