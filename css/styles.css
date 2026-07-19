@@ -468,20 +468,50 @@ img.logo__mark {
   padding-top: clamp(4.5rem, 10vh, 6.5rem);
 }
 
-/* Reveal on scroll */
+/* Scroll reveal — как на PoStroy: очень плавное появление */
 .reveal {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.5s var(--ease), transform 0.5s var(--ease);
+  transform: translate3d(0, 32px, 0);
+  transition:
+    opacity 0.85s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+.reveal--left {
+  transform: translate3d(-24px, 16px, 0);
+}
+.reveal--right {
+  transform: translate3d(24px, 16px, 0);
+}
+.reveal--scale {
+  transform: translate3d(0, 20px, 0) scale(0.97);
 }
 .reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0) scale(1);
 }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+.reveal-d4 { transition-delay: 0.32s; }
+.reveal-d5 { transition-delay: 0.4s; }
+
 /* Если JS не загрузился — контент всё равно виден */
 .no-js .reveal {
   opacity: 1;
   transform: none;
+  transition: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal--left,
+  .reveal--right,
+  .reveal--scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
 }
 
 /* ---------- Hero ---------- */
@@ -551,11 +581,11 @@ img.logo__mark {
   display: block;
 }
 
-/* Мягкое появление (без «падения с неба») */
+/* Hero items: same soft fade as scroll reveal (no hard drop) */
 @keyframes heroDropLand {
   0% {
     opacity: 0;
-    transform: translate3d(0, 18px, 0);
+    transform: translate3d(0, 28px, 0);
   }
   100% {
     opacity: 1;
@@ -566,28 +596,26 @@ img.logo__mark {
 @keyframes heroCardDrop {
   0% {
     opacity: 0;
-    transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translate3d(0, 22px, 0) scale(0.98);
+    transform: translate3d(0, 28px, 0) scale(0.98);
   }
   100% {
     opacity: 1;
-    transform: perspective(1000px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y)) translate3d(0, 0, 0) scale(1);
-    box-shadow: var(--shadow);
+    transform: translate3d(0, 0, 0) scale(1);
   }
 }
 
-/* Падение — главная и все разделы */
 .hero-drop,
 .page-drop {
   opacity: 0;
   will-change: transform, opacity;
-  animation: heroDropLand 0.65s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-  animation-delay: calc(0.05s + var(--drop-i, 0) * 0.04s);
+  animation: heroDropLand 0.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation-delay: calc(0.06s + var(--drop-i, 0) * 0.07s);
 }
 
 .hero-drop--card,
 .page-drop--card {
   animation-name: heroCardDrop;
-  animation-duration: 0.75s;
+  animation-duration: 0.9s;
   animation-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
@@ -596,18 +624,10 @@ img.logo__mark {
   opacity: 1;
   filter: none;
   animation: none;
-}
-.hero-drop.is-landed:not(.hero-drop--card):not(.page-drop--card),
-.page-drop.is-landed:not(.hero-drop--card):not(.page-drop--card) {
   transform: none;
 }
 
-/* page-drop заменяет reveal при входе в раздел */
-.reveal.page-drop,
-.reveal.hero-drop {
-  transform: none;
-  transition: none;
-}
+/* page-drop no longer overrides reveal — use transition reveal only */
 
 .gradient-text--shimmer {
   /* shimmer disabled — keep class for compatibility */
@@ -1239,6 +1259,7 @@ img.logo__mark {
   opacity: 1;
 }
 .portfolio-card.hidden-filter { display: none; }
+/* portfolio cards use .reveal now */
 .portfolio-card.page-drop:not(.is-landed) {
   opacity: 0;
 }

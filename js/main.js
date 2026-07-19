@@ -549,26 +549,72 @@ function closeMobileMenu() {
 }
 
 /* ============================================================
-   SCROLL REVEAL
+   SCROLL REVEAL (PoStroy-style: smooth fade + rise)
    ============================================================ */
 let revealObserver;
 
 function observeReveals() {
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (reduceMotion) {
+    $$('.reveal').forEach((el) => el.classList.add('is-visible'));
+    return;
+  }
+
   if (!revealObserver) {
     revealObserver = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const delay = Number(entry.target.dataset.delay || 0);
+          if (!entry.isIntersecting) return;
+          const delay = Number(entry.target.dataset.delay || 0);
+          if (delay > 0) {
             setTimeout(() => entry.target.classList.add('is-visible'), delay);
-            revealObserver.unobserve(entry.target);
+          } else {
+            entry.target.classList.add('is-visible');
           }
+          revealObserver.unobserve(entry.target);
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
     );
   }
   $$('.reveal:not(.is-visible)').forEach((el) => revealObserver.observe(el));
+}
+
+/** Tag section content like PoStroy landing */
+function setupLandingReveals() {
+  const mark = (els, ...classes) => {
+    els.forEach((el, i) => {
+      if (!el) return;
+      el.classList.add('reveal', ...classes);
+      if (!el.classList.contains('reveal-d1') && !el.classList.contains('reveal-d2')) {
+        const d = (i % 4) + 1;
+        el.classList.add(`reveal-d${d}`);
+      }
+    });
+  };
+
+  // Section headers
+  $$('.page:not([data-page="home"]) .page-hero .container > *').forEach((el, i) => {
+    el.classList.add('reveal', `reveal-d${Math.min(i + 1, 5)}`);
+  });
+
+  mark($$('.service-card'), 'reveal--scale');
+  mark($$('.portfolio-card'), 'reveal--scale');
+  mark($$('.skill-card'), 'reveal--scale');
+  mark($$('.contact-card'), 'reveal--scale');
+
+  $$('.about-layout > *').forEach((el, i) => {
+    el.classList.add('reveal', i === 0 ? 'reveal--left' : 'reveal--right', `reveal-d${i + 1}`);
+  });
+
+  $$('.about-photo, .about-content, .about-text, .skills-grid').forEach((el, i) => {
+    if (!el.classList.contains('reveal')) {
+      el.classList.add('reveal', `reveal-d${(i % 4) + 1}`);
+    }
+  });
+
+  // Already-marked .reveal in HTML keep their data-delay
+  observeReveals();
 }
 
 /* ============================================================
@@ -894,38 +940,19 @@ function init() {
   renderPortfolio();
   initNavigation();
 
-  // Hero drop-in + scroll reveals for all sections
+  // Soft hero entrance + PoStroy-style section reveals
   requestAnimationFrame(() => {
     const home = sectionEl('home');
+    // light hero fade only (no hard page-drop on sections)
     window.PageDrop?.animate(home);
-    observeReveals();
+    setupLandingReveals();
   });
-
-  // Stagger section reveals when they enter viewport
-  initSectionDrops();
 
   console.info(
     '%cButik Portfolio',
     'color:#888;font-weight:bold;font-size:13px',
     '\n@butik_43 · landing scroll'
   );
-}
-
-function initSectionDrops() {
-  const sections = $$('.page').filter((p) => p.dataset.page && p.dataset.page !== 'home');
-  if (!sections.length || !window.PageDrop) return;
-
-  const io = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (!entry.isIntersecting) return;
-        window.PageDrop.animate(entry.target);
-        io.unobserve(entry.target);
-      });
-    },
-    { threshold: 0.12, rootMargin: '0px 0px -8% 0px' }
-  );
-  sections.forEach((s) => io.observe(s));
 }
 
 document.addEventListener('DOMContentLoaded', init);
