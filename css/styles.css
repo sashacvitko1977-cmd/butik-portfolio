@@ -1298,6 +1298,9 @@ img.logo__mark {
   pointer-events: none;
   z-index: 1;
 }
+.portfolio-card__thumb.thumb--lane {
+  background: linear-gradient(145deg, #8b3a4a 0%, #6b0f1a 45%, #2a0a10 100%);
+}
 .portfolio-card__thumb.thumb--coffee {
   background: linear-gradient(145deg, #6f4e37 0%, #3e2723 45%, #1b120d 100%);
 }
@@ -1894,6 +1897,9 @@ input[type="search"]:focus {
   color: #fff;
   margin-bottom: 1.5rem;
   background: linear-gradient(145deg, #2a2a2a, #121212);
+}
+.modal-project__thumb.thumb--lane {
+  background: linear-gradient(145deg, #8b3a4a 0%, #6b0f1a 45%, #2a0a10 100%);
 }
 .modal-project__thumb.thumb--coffee {
   background: linear-gradient(145deg, #6f4e37 0%, #3e2723 45%, #1b120d 100%);

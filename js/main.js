@@ -341,6 +341,19 @@ function getArticles() {
  */
 const PROJECTS = [
   {
+    id: 'lane-salon',
+    title: 'LANE Salon',
+    category: 'web',
+    tags: ['React', 'TypeScript', 'Vite', 'Framer Motion'],
+    desc: 'Лендинг салона красоты: hero-видео, услуги (маникюр, педикюр, ресницы, брови), запись и мессенджеры.',
+    full: 'Одностраничный сайт салона LANE: видео на hero с плавным loop, карточки услуг, блок «о салоне», форма записи, Telegram и VK. Тёмно-вишнёвый акцент, шрифты Cormorant Garamond + Outfit. Стек: React, TypeScript, Vite, Tailwind CSS v4, Framer Motion. Live: lane-salon.vercel.app. GitHub: sashacvitko1977-cmd/lane-salon.',
+    role: 'Frontend',
+    year: '2026',
+    icon: 'spa',
+    url: 'https://lane-salon.vercel.app',
+    thumbClass: 'thumb--lane',
+  },
+  {
     id: 'coffee-time',
     title: 'Coffee Time',
     category: 'web',
